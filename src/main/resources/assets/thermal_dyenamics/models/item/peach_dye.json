@@ -1,6 +1,6 @@
 {
-  "parent": "thermal_dyenamics:item/template_dye",
-  "textures": {
-    "all": "thermal_dyenamics:item/peach_dye"
-  }
+    "parent": "minecraft:item/generated",
+    "textures": {
+        "layer0": "thermal_dyenamics:item/peach_dye"
+    }
 }

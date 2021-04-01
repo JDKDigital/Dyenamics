@@ -3,7 +3,7 @@
     "group": "wool",
     "ingredients": [
         {
-            "item": "thermal_dyenamics:fluorescent_dye"
+            "item": "fluorescent_dye"
         },
         {
             "item": "minecraft:white_wool"

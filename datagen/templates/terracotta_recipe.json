@@ -1,21 +1,21 @@
 {
     "type": "minecraft:crafting_shaped",
-    "group": "carpet",
+    "group": "stained_terracotta",
     "pattern": [
         "###",
-        "#$#",
+        "#X#",
         "###"
     ],
     "key": {
         "#": {
-            "item": "minecraft:white_carpet"
+            "item": "minecraft:terracotta"
         },
-        "$": {
-            "item": "aquamarine_dye"
+        "X": {
+            "item": ""
         }
     },
     "result": {
-        "item": "thermal_dyenamics:aquamarine_carpet",
+        "item": "",
         "count": 8
     }
 }

@@ -11,7 +11,7 @@
             "item": "minecraft:terracotta"
         },
         "X": {
-            "item": "thermal_dyenamics:fluorescent_dye"
+            "item": "fluorescent_dye"
         }
     },
     "result": {

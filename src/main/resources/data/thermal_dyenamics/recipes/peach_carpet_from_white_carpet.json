@@ -11,7 +11,7 @@
             "item": "minecraft:white_carpet"
         },
         "$": {
-            "item": "thermal_dyenamics:peach_dye"
+            "item": "peach_dye"
         }
     },
     "result": {

@@ -11,11 +11,11 @@
             "item": "minecraft:white_carpet"
         },
         "$": {
-            "item": "aquamarine_dye"
+            "item": ""
         }
     },
     "result": {
-        "item": "thermal_dyenamics:aquamarine_carpet",
+        "item": "",
         "count": 8
     }
 }
