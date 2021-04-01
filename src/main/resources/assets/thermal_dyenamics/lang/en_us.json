@@ -1,6 +1,25 @@
 {
-	"item.thermal_dyenamics.beige_dye": "Beige Dye",
 	"item.thermal_dyenamics.peach_dye": "Peach Dye",
+	"block.thermal_dyenamics.peach_wool": "Peach Wool",
+	"block.thermal_dyenamics.peach_carpet": "Peach Carpet",
+	"block.thermal_dyenamics.peach_terracotta": "Peach Terracotta",
+	"block.thermal_dyenamics.peach_glazed_terracotta": "Peach Glazed Terracotta",
+	"block.thermal_dyenamics.peach_concrete": "Peach Concrete",
+	"block.thermal_dyenamics.peach_concrete_powder": "Peach Concrete Powder",
+	
 	"item.thermal_dyenamics.aquamarine_dye": "Aquamarine Dye",
-	"item.thermal_dyenamics.fluorescent_dye": "Fluorescent Dye"
+	"block.thermal_dyenamics.aquamarine_wool": "Aquamarine Wool",
+	"block.thermal_dyenamics.aquamarine_carpet": "Aquamarine Carpet",
+	"block.thermal_dyenamics.aquamarine_terracotta": "Aquamarine Terracotta",
+	"block.thermal_dyenamics.aquamarine_glazed_terracotta": "Aquamarine Glazed Terracotta",
+	"block.thermal_dyenamics.aquamarine_concrete": "Aquamarine Concrete",
+	"block.thermal_dyenamics.aquamarine_concrete_powder": "Aquamarine Concrete Powder",
+	
+	"item.thermal_dyenamics.fluorescent_dye": "Fluorescent Dye",
+	"block.thermal_dyenamics.fluorescent_wool": "Fluorescent Wool",
+	"block.thermal_dyenamics.fluorescent_carpet": "Fluorescent Carpet",
+	"block.thermal_dyenamics.fluorescent_terracotta": "Fluorescent Terracotta",
+	"block.thermal_dyenamics.fluorescent_glazed_terracotta": "Fluorescent Glazed Terracotta",
+	"block.thermal_dyenamics.fluorescent_concrete": "Fluorescent Concrete",
+	"block.thermal_dyenamics.fluorescent_concrete_powder": "Fluorescent Concrete Powder"
 }

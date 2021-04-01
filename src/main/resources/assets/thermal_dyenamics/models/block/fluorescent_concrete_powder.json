@@ -1,6 +1,6 @@
 {
     "parent": "minecraft:block/cube_all",
     "textures": {
-        "all": "thermal_dyenamics:block/fluorescent_concrete powder"
+        "all": "thermal_dyenamics:block/fluorescent_concrete_powder"
     }
 }

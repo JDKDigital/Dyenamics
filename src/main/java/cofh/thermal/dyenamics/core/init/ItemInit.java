@@ -18,5 +18,27 @@ public class ItemInit {
 	
 	//Block Items
 	public static final RegistryObject<BlockItem> PEACH_TERRACOTTA = ITEMS.register("peach_terracotta", () -> new BlockItem(BlockInit.PEACH_TERRACOTTA.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
+	public static final RegistryObject<BlockItem> AQUAMARINE_TERRACOTTA = ITEMS.register("aquamarine_terracotta", () -> new BlockItem(BlockInit.AQUAMARINE_TERRACOTTA.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
+	public static final RegistryObject<BlockItem> FLUORESCENT_TERRACOTTA = ITEMS.register("fluorescent_terracotta", () -> new BlockItem(BlockInit.FLUORESCENT_TERRACOTTA.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
+
+	public static final RegistryObject<BlockItem> PEACH_GLAZED_TERRACOTTA = ITEMS.register("peach_glazed_terracotta", () -> new BlockItem(BlockInit.PEACH_GLAZED_TERRACOTTA.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
+	public static final RegistryObject<BlockItem> AQUAMARINE_GLAZED_TERRACOTTA = ITEMS.register("aquamarine_glazed_terracotta", () -> new BlockItem(BlockInit.AQUAMARINE_GLAZED_TERRACOTTA.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
+	public static final RegistryObject<BlockItem> FLUORESCENT_GLAZED_TERRACOTTA = ITEMS.register("fluorescent_glazed_terracotta", () -> new BlockItem(BlockInit.FLUORESCENT_GLAZED_TERRACOTTA.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
+	
+	public static final RegistryObject<BlockItem> PEACH_CONCRETE = ITEMS.register("peach_concrete", () -> new BlockItem(BlockInit.PEACH_CONCRETE.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
+	public static final RegistryObject<BlockItem> AQUAMARINE_CONCRETE = ITEMS.register("aquamarine_concrete", () -> new BlockItem(BlockInit.AQUAMARINE_CONCRETE.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
+	public static final RegistryObject<BlockItem> FLUORESCENT_CONCRETE = ITEMS.register("fluorescent_concrete", () -> new BlockItem(BlockInit.FLUORESCENT_CONCRETE.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
+
+	public static final RegistryObject<BlockItem> PEACH_CONCRETE_POWDER = ITEMS.register("peach_concrete_powder", () -> new BlockItem(BlockInit.PEACH_CONCRETE_POWDER.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
+	public static final RegistryObject<BlockItem> AQUAMARINE_CONCRETE_POWDER = ITEMS.register("aquamarine_concrete_powder", () -> new BlockItem(BlockInit.AQUAMARINE_CONCRETE_POWDER.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
+	public static final RegistryObject<BlockItem> FLUORESCENT_CONCRETE_POWDER = ITEMS.register("fluorescent_concrete_powder", () -> new BlockItem(BlockInit.FLUORESCENT_CONCRETE_POWDER.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
+	
+	public static final RegistryObject<BlockItem> PEACH_WOOL = ITEMS.register("peach_wool", () -> new BlockItem(BlockInit.PEACH_WOOL.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
+	public static final RegistryObject<BlockItem> AQUAMARINE_WOOL = ITEMS.register("aquamarine_wool", () -> new BlockItem(BlockInit.AQUAMARINE_WOOL.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
+	public static final RegistryObject<BlockItem> FLUORESCENT_WOOL = ITEMS.register("fluorescent_wool", () -> new BlockItem(BlockInit.FLUORESCENT_WOOL.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
+	
+	public static final RegistryObject<BlockItem> PEACH_CARPET = ITEMS.register("peach_carpet", () -> new BlockItem(BlockInit.PEACH_CARPET.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
+	public static final RegistryObject<BlockItem> AQUAMARINE_CARPET = ITEMS.register("aquamarine_carpet", () -> new BlockItem(BlockInit.AQUAMARINE_CARPET.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
+	public static final RegistryObject<BlockItem> FLUORESCENT_CARPET = ITEMS.register("fluorescent_carpet", () -> new BlockItem(BlockInit.FLUORESCENT_CARPET.get(), new Item.Properties().group(ItemGroup.DECORATIONS)));
 	
 }

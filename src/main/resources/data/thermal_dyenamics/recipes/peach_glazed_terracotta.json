@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "thermal_dyenamics:peach_terracotta"
+    },
+    "result": "thermal_dyenamics:peach_glazed_terracotta",
+    "experience": 0.1,
+    "cookingtime": 200
+}
