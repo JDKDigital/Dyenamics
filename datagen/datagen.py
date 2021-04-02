@@ -6,7 +6,9 @@ paths = {"recipes": f"resources/data/{modid}/recipes",
 	"loot_tables": f"resources/data/{modid}/loot_tables/blocks",
 	"blockstates": f"resources/assets/{modid}/blockstates",
 	"block_models": f"resources/assets/{modid}/models/block",
-	"item_models": f"resources/assets/{modid}/models/item"}
+	"item_models": f"resources/assets/{modid}/models/item",
+	"lang": f"resources/assets/{modid}/lang"
+}
 
 dyes = ["peach", "aquamarine", "fluorescent"]
 blocks = ["terracotta", "glazed_terracotta", "concrete", "concrete_powder", "wool", "carpet"]
@@ -16,6 +18,19 @@ items = ["dye"]
 def genFolders():
 	for path in paths:
 		os.makedirs(paths[path], exist_ok=True)
+
+#en_us Lang
+def genLang():
+	lang = {}
+	for dye in dyes:
+		for item in items:
+			name = dye + "_" + item
+			lang[f"item.{modid}.{name}"] = " ".join([word.capitalize() for word in name.split("_")])
+		for block in blocks:
+			name = dye + "_" + block
+			lang[f"block.{modid}.{name}"] = " ".join([word.capitalize() for word in name.split("_")])
+	with open(f"{paths['lang']}/en_us.json", "x") as file:
+		file.write(json.dumps(lang, indent = 4))
 
 #Recipes
 def genRecipes():
@@ -129,6 +144,7 @@ def genItemModels():
 				file.write(json.dumps(itemTemplate, indent = 4))
 
 genFolders()
+genLang()
 genRecipes()
 genLootTables()
 genBlockstates()
