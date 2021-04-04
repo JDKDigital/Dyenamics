@@ -8,6 +8,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import cofh.thermal.dyenamics.core.init.EntityInit;
 import cofh.thermal.dyenamics.core.init.Init;
 
 
@@ -28,6 +29,7 @@ public class ThermalDyenamics
         bus.addListener(this::setup);
         Init.BLOCKS.register(bus);
         Init.ITEMS.register(bus);
+        Init.ENTITIES.register(bus);
         
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);

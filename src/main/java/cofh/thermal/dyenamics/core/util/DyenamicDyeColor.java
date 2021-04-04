@@ -26,8 +26,8 @@ public enum DyenamicDyeColor implements IStringSerializable{
 		return new DyenamicDyeColor[colorId];
     });
 	
-   //private static final Int2ObjectOpenHashMap<DyenamicDyeColor> BY_FIREWORK_COLOR = new Int2ObjectOpenHashMap<>(Arrays.stream(values()).collect(Collectors.toMap((color) -> {
-   //   return color.fireworkColor;}, (color) -> {return color;})));
+   private static final Int2ObjectOpenHashMap<DyenamicDyeColor> BY_FIREWORK_COLOR = new Int2ObjectOpenHashMap<>(Arrays.stream(values()).collect(Collectors.toMap((color) -> {
+      return color.fireworkColor;}, (color) -> {return color;})));
    
    private final int id;
    private final String translationKey;
@@ -83,6 +83,10 @@ public enum DyenamicDyeColor implements IStringSerializable{
    public int getTextColor() {
       return this.textColor;
    }
+   
+   public int getLightValue() {
+	      return this.lightValue;
+	   }
 
    public static DyenamicDyeColor byId(int colorId) {
       if (colorId < 0 || colorId >= VALUES.length) {
@@ -102,12 +106,12 @@ public enum DyenamicDyeColor implements IStringSerializable{
       return fallback;
    }
 
-   /*
+   
    @Nullable
    public static DyenamicDyeColor byFireworkColor(int fireworkColorIn) {
       return BY_FIREWORK_COLOR.get(fireworkColorIn);
    }
-   */
+   
 
    public String toString() {
       return this.translationKey;

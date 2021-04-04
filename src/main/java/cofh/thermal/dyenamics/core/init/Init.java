@@ -1,8 +1,12 @@
 package cofh.thermal.dyenamics.core.init;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Supplier;
 
 import cofh.thermal.dyenamics.ThermalDyenamics;
+import cofh.thermal.dyenamics.common.entities.DyenamicSheepEntity;
+import cofh.thermal.dyenamics.core.util.DyenamicDyeColor;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -10,6 +14,8 @@ import net.minecraft.block.CarpetBlock;
 import net.minecraft.block.ConcretePowderBlock;
 import net.minecraft.block.FireBlock;
 import net.minecraft.block.GlazedTerracottaBlock;
+import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
@@ -17,17 +23,35 @@ import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.item.SpawnEggItem;
+import net.minecraft.util.ResourceLocation;
 
 public class Init {
-	public static final String[] dyes = {"peach", "aquamarine", "fluorescent"};
-	public static final int[] light = {0, 0, 15};
 	
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, ThermalDyenamics.MOD_ID);
+	public static final Map<String, Map<String, RegistryObject<Block>>> DYED_BLOCKS = new HashMap<>();
+	
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ThermalDyenamics.MOD_ID);
+	public static final Map<String, RegistryObject<Item>> DYE_ITEMS = new HashMap<>();
+	
+	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, ThermalDyenamics.MOD_ID);
+	public static final Map<String, RegistryObject<EntityType<?>>> DYEABLE_ENTITIES = new HashMap<>();
 	
 	public static void register() {
-		for (int i = 0; i < dyes.length; i++) {
-			registerDyeAndBlocks(dyes[i], light[i]);
+		registerDyes();
+		registerEntities();
+	}
+	
+	public synchronized static void registerEntities() {
+		//DYEABLE_ENTITIES.put("sheep", ENTITIES.register("dyenamic_sheep", () -> EntityType.Builder.create(DyenamicSheepEntity::new, EntityClassification.CREATURE).build("dyenamic_sheep")));		
+		//ITEMS.register("dyenamic_sheep_spawn_egg", () -> new SpawnEggItem(DYEABLE_ENTITIES.get("sheep").get(), 0, 0, new Item.Properties().group(ItemGroup.MISC)));
+	}
+	
+	public synchronized static void registerDyes() {
+		for (DyenamicDyeColor color : DyenamicDyeColor.values()) {
+			String colorName = color.getString();
+			DYE_ITEMS.put(colorName + "_dye", ITEMS.register(colorName + "_dye", () -> new Item(new Item.Properties().group(ItemGroup.MISC))));
+			registerDyeBlocks(colorName, color.getLightValue());
 		}
 	}
 	/*
@@ -36,20 +60,22 @@ public class Init {
 		fireBlock.setFireInfo(Blocks.OAK_PLANKS, 5, 20);
 	}
 	*/
-	public static void registerDyeAndBlocks(String dye, int light) {
-		ITEMS.register(dye + "_dye", () -> new Item(new Item.Properties().group(ItemGroup.MISC)));
-		registerBlockAndItem(dye + "_terracotta", () -> new Block(AbstractBlock.Properties.from(Blocks.TERRACOTTA).setLightLevel((state) -> {return light;})), ItemGroup.BUILDING_BLOCKS);
-		registerBlockAndItem(dye + "_glazed_terracotta", () -> new GlazedTerracottaBlock(AbstractBlock.Properties.from(Blocks.WHITE_GLAZED_TERRACOTTA).setLightLevel((state) -> {return light;})), ItemGroup.DECORATIONS);
-		RegistryObject<Block> concrete = registerBlockAndItem(dye + "_concrete", () -> new Block(AbstractBlock.Properties.from(Blocks.WHITE_CONCRETE).setLightLevel((state) -> {return light;})), ItemGroup.BUILDING_BLOCKS);
-		registerBlockAndItem(dye + "_concrete_powder", () -> new ConcretePowderBlock(concrete.get(), AbstractBlock.Properties.from(Blocks.WHITE_CONCRETE_POWDER).setLightLevel((state) -> {return light;})), ItemGroup.BUILDING_BLOCKS);
-		registerBlockAndItem(dye + "_wool", () -> new Block(AbstractBlock.Properties.from(Blocks.WHITE_WOOL).setLightLevel((state) -> {return light;})), ItemGroup.BUILDING_BLOCKS);
-		registerBlockAndItem(dye + "_carpet", () -> new CarpetBlock(DyeColor.WHITE, AbstractBlock.Properties.from(Blocks.WHITE_CARPET).setLightLevel((state) -> {return light;})), ItemGroup.BUILDING_BLOCKS);
-		
+	public synchronized static void registerDyeBlocks(String color, int light) {
+		final Map<String, RegistryObject<Block>> blocks = new HashMap<>();
+		DYED_BLOCKS.put(color, blocks);
+		registerBlockAndItem(color, "terracotta", blocks, ItemGroup.BUILDING_BLOCKS, () -> new Block(AbstractBlock.Properties.from(Blocks.TERRACOTTA).setLightLevel((state) -> {return light;})));
+		registerBlockAndItem(color, "glazed_terracotta", blocks, ItemGroup.DECORATIONS, () -> new GlazedTerracottaBlock(AbstractBlock.Properties.from(Blocks.WHITE_GLAZED_TERRACOTTA).setLightLevel((state) -> {return light;})));
+		final RegistryObject<Block> concrete = registerBlockAndItem(color, "concrete", blocks, ItemGroup.BUILDING_BLOCKS, () -> new Block(AbstractBlock.Properties.from(Blocks.WHITE_CONCRETE).setLightLevel((state) -> {return light;})));
+		registerBlockAndItem(color, "concrete_powder", blocks, ItemGroup.BUILDING_BLOCKS, () -> new ConcretePowderBlock(concrete.get(), AbstractBlock.Properties.from(Blocks.WHITE_CONCRETE_POWDER).setLightLevel((state) -> {return light;})));
+		registerBlockAndItem(color, "wool", blocks, ItemGroup.BUILDING_BLOCKS, () -> new Block(AbstractBlock.Properties.from(Blocks.WHITE_WOOL).setLightLevel((state) -> {return light;})));
+		registerBlockAndItem(color, "carpet", blocks, ItemGroup.DECORATIONS, () -> new CarpetBlock(DyeColor.WHITE, AbstractBlock.Properties.from(Blocks.WHITE_CARPET).setLightLevel((state) -> {return light;})));
 	}
 	
-	public static RegistryObject<Block> registerBlockAndItem(String name, Supplier<Block> supplier, ItemGroup group) {
-		RegistryObject<Block> block = BLOCKS.register(name, supplier);
-		ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().group(group)));
-		return block;
+	public synchronized static RegistryObject<Block> registerBlockAndItem(String color, String block, Map<String, RegistryObject<Block>> blockMap, ItemGroup group, Supplier<Block> supplier) {
+		String name = color + "_" + block;
+		RegistryObject<Block> blockRegistryObject = BLOCKS.register(name, supplier);
+		ITEMS.register(name, () -> new BlockItem(blockRegistryObject.get(), new Item.Properties().group(group)));
+		blockMap.put(name, blockRegistryObject);
+		return blockRegistryObject;
 	}
 }

@@ -2,6 +2,7 @@ package cofh.thermal.dyenamics.common.entities;
 
 import com.google.common.collect.Maps;
 
+import cofh.thermal.dyenamics.core.init.Init;
 import cofh.thermal.dyenamics.core.util.DyenamicDyeColor;
 import cofh.thermal.dyenamics.common.items.DyenamicDyeItem;
 
@@ -131,6 +132,7 @@ public class DyenamicSheepEntity extends AnimalEntity implements IShearable, net
       this.dataManager.register(DYE_COLOR, (byte)0);
    }
 
+   /*register own loot tables
    public ResourceLocation getLootTable() {
       if (this.getSheared()) {
          return this.getType().getLootTable();
@@ -172,7 +174,7 @@ public class DyenamicSheepEntity extends AnimalEntity implements IShearable, net
          }
       }
    }
-
+    */
    /**
     * Handler for {@link World#setEntityState}
     */
@@ -310,7 +312,7 @@ public class DyenamicSheepEntity extends AnimalEntity implements IShearable, net
 
    public DyenamicSheepEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
       DyenamicSheepEntity sheepentity = (DyenamicSheepEntity)p_241840_2_;
-      DyenamicSheepEntity sheepentity1 = EntityType.SHEEP.create(p_241840_1_); //change to dyenamics SHEEP
+      DyenamicSheepEntity sheepentity1 = (DyenamicSheepEntity) Init.DYEABLE_ENTITIES.get("sheep").get().create(p_241840_1_); 
       sheepentity1.setFleeceColor(this.getDyenamicDyeColorMixFromParents(this, sheepentity));
       return sheepentity1;
    }
@@ -342,7 +344,7 @@ public class DyenamicSheepEntity extends AnimalEntity implements IShearable, net
       CraftingInventory craftinginventory = createDyenamicDyeColorCraftingInventory(dyecolor, dyecolor1);
       return this.world.getRecipeManager().getRecipe(IRecipeType.CRAFTING, craftinginventory, this.world).map((p_213614_1_) -> {
          return p_213614_1_.getCraftingResult(craftinginventory);
-      }).map(ItemStack::getItem).filter(DyenamicDyeItem.class::isInstance).map(DyenamicDyeItem.class::cast).map(DyenamicDyeItem::getDyenamicDyeColor).orElseGet(() -> {
+      }).map(ItemStack::getItem).filter(DyenamicDyeItem.class::isInstance).map(DyenamicDyeItem.class::cast).map(DyenamicDyeItem::getDyeColor).orElseGet(() -> {
          return this.world.rand.nextBoolean() ? dyecolor : dyecolor1;
       });
    }
@@ -387,3 +389,4 @@ public class DyenamicSheepEntity extends AnimalEntity implements IShearable, net
       return java.util.Collections.emptyList();
    }
 }
+
