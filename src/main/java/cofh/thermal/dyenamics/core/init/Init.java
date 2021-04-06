@@ -14,8 +14,13 @@ import net.minecraft.block.CarpetBlock;
 import net.minecraft.block.ConcretePowderBlock;
 import net.minecraft.block.FireBlock;
 import net.minecraft.block.GlazedTerracottaBlock;
+import net.minecraft.client.renderer.entity.SheepRenderer;
 import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
+import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
@@ -25,6 +30,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.gen.Heightmap;
 
 public class Init {
 	
@@ -35,7 +41,7 @@ public class Init {
 	public static final Map<String, RegistryObject<Item>> DYE_ITEMS = new HashMap<>();
 	
 	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, ThermalDyenamics.MOD_ID);
-	public static final Map<String, RegistryObject<EntityType<?>>> DYEABLE_ENTITIES = new HashMap<>();
+	public static final RegistryObject<EntityType<DyenamicSheepEntity>> SHEEP = ENTITIES.register("sheep", () -> EntityType.Builder.create(DyenamicSheepEntity::new, EntityClassification.CREATURE).build("sheep"));
 	
 	public static void register() {
 		registerDyes();
@@ -43,12 +49,14 @@ public class Init {
 	}
 	
 	public synchronized static void registerEntities() {
-		//DYEABLE_ENTITIES.put("sheep", ENTITIES.register("dyenamic_sheep", () -> EntityType.Builder.create(DyenamicSheepEntity::new, EntityClassification.CREATURE).build("dyenamic_sheep")));		
-		//ITEMS.register("dyenamic_sheep_spawn_egg", () -> new SpawnEggItem(DYEABLE_ENTITIES.get("sheep").get(), 0, 0, new Item.Properties().group(ItemGroup.MISC)));
+		System.out.println("SEE THAT!! " + SHEEP);
+		System.out.println("SEE THIS!! " + SHEEP.isPresent());
+		//ITEMS.register("dyenamic_sheep_spawn_egg", () -> new SpawnEggItem(DYEABLE_ENTITIES.get("sheep").get(), 255, 255, new Item.Properties().group(ItemGroup.MISC)));
+		
 	}
 	
 	public synchronized static void registerDyes() {
-		for (DyenamicDyeColor color : DyenamicDyeColor.values()) {
+		for (DyenamicDyeColor color : DyenamicDyeColor.dyenamicValues()) {
 			String colorName = color.getString();
 			DYE_ITEMS.put(colorName + "_dye", ITEMS.register(colorName + "_dye", () -> new Item(new Item.Properties().group(ItemGroup.MISC))));
 			registerDyeBlocks(colorName, color.getLightValue());
@@ -75,7 +83,12 @@ public class Init {
 		String name = color + "_" + block;
 		RegistryObject<Block> blockRegistryObject = BLOCKS.register(name, supplier);
 		ITEMS.register(name, () -> new BlockItem(blockRegistryObject.get(), new Item.Properties().group(group)));
-		blockMap.put(name, blockRegistryObject);
+		blockMap.put(block, blockRegistryObject);
 		return blockRegistryObject;
+	}
+	
+	public static void setup() {
+		GlobalEntityTypeAttributes.put(SHEEP.get(), DyenamicSheepEntity.registerAttributes().create());
+		EntitySpawnPlacementRegistry.register(SHEEP.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
 	}
 }

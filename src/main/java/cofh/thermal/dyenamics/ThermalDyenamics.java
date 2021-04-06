@@ -1,8 +1,11 @@
 package cofh.thermal.dyenamics;
 
+import net.minecraft.client.renderer.entity.SheepRenderer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
@@ -26,7 +29,8 @@ public class ThermalDyenamics
     public ThermalDyenamics() {
     	IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         // Register the setup method for modloading
-        bus.addListener(this::setup);
+        bus.addListener(this::commonSetup);
+        bus.addListener(this::clientSetup);
         Init.BLOCKS.register(bus);
         Init.ITEMS.register(bus);
         Init.ENTITIES.register(bus);
@@ -35,7 +39,13 @@ public class ThermalDyenamics
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void setup(final FMLCommonSetupEvent event) {
-    	
+    private void commonSetup(final FMLCommonSetupEvent event) {
+    	event.enqueueWork(Init::setup);
     }
+    
+    private void clientSetup(final FMLClientSetupEvent event) {
+    	RenderingRegistry.registerEntityRenderingHandler(Init.SHEEP.get(), SheepRenderer::new);
+    }
+    
+    
 }
