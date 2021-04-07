@@ -38,11 +38,11 @@ public enum DyenamicDyeColor implements IStringSerializable{
 	PEACH(16, "peach", 12556403, MaterialColor.SAND, 12556403, 11570292, 0),
 	AQUAMARINE(17, "aquamarine", 2915711, MaterialColor.CYAN_TERRACOTTA, 2915711, 2717304, 0),
 	FLUORESCENT(18, "fluorescent", 15657398, MaterialColor.SAND, 15657398, 16117951, 15),
-	MINT(19, "mint", 8772031, MaterialColor.GREEN, 8772031, 7914669, 0),
-	MAROON(20, "maroon", 9175040, MaterialColor.RED, 8716288, 8388608, 0),
-	BUBBLEGUM(21, "bubblegum", 16216567, MaterialColor.PINK, 16216567, 15099878, 0),
+	MINT(19, "mint", 9038008, MaterialColor.GREEN, 9038008, 7917475, 0),
+	MAROON(20, "maroon", 9502720, MaterialColor.RED, 9502720, 9502720, 0),
+	BUBBLEGUM(21, "bubblegum", 16216518, MaterialColor.PINK, 16216518, 14574769, 0),
 	LAVENDER(22, "lavender", 14522879, MaterialColor.PURPLE, 14522879, 13339371, 0),
-	PERSIMMON(23, "persimmon", 13782041, MaterialColor.ORANGE_TERRACOTTA, 13782041, 12731669, 0),
+	PERSIMMON(23, "persimmon", 13779225, MaterialColor.ORANGE_TERRACOTTA, 13779225, 12203795, 0),
 	CHERENKOV(24, "cherenkov", 104655, MaterialColor.LIGHT_BLUE, 104655, 35002, 8);
 	
 	private static final DyenamicDyeColor[] VALUES = Arrays.stream(values()).sorted(Comparator.comparingInt(DyenamicDyeColor::getId)).toArray((colorId) -> {
