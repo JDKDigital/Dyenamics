@@ -7,6 +7,7 @@ import cofh.thermal.dyenamics.core.util.DyenamicDyeColor;
 
 import java.util.Map;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -35,11 +36,19 @@ public class DyenamicDyeItem extends Item {
                sheepentity.setFleeceColor(this.dyeColor);
                stack.shrink(1);
             }
-
             return ActionResultType.func_233537_a_(playerIn.world.isRemote);
          }
       }
-
+      if (target instanceof SheepEntity) {
+     	 SheepEntity sheepentity = (SheepEntity)target;
+          if (sheepentity.isAlive() && !sheepentity.getSheared() && sheepentity.getFleeceColor().getId() != this.dyeColor.getId()) {
+             if (!playerIn.world.isRemote) {
+            	DyenamicSheepEntity.convertToDyenamics(sheepentity, dyeColor);
+                stack.shrink(1);
+             }
+             return ActionResultType.func_233537_a_(playerIn.world.isRemote);
+          }
+       }
       return ActionResultType.PASS;
    }
 

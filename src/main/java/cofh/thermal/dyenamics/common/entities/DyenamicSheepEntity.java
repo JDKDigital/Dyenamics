@@ -11,7 +11,10 @@ import javax.annotation.Nullable;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -35,21 +38,24 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class DyenamicSheepEntity extends SheepEntity {
-   protected static final DataParameter<Byte> DYE_COLOR = EntityDataManager.createKey(DyenamicSheepEntity.class, DataSerializers.BYTE);
    protected static final Map<DyenamicDyeColor, IItemProvider> WOOL_BY_COLOR = Util.make(Maps.newEnumMap(DyenamicDyeColor.class), (p_203402_0_) -> {
 	   for (DyenamicDyeColor color : DyenamicDyeColor.dyenamicValues()) {
 		   p_203402_0_.put(color, Init.DYED_BLOCKS.get(color.getString()).get("wool").get());
 	   }
    });
    /** Map from EnumDyenamicDyeColor to RGB values for passage to GlStateManager.color() */
-   protected static final Map<DyenamicDyeColor, float[]> DYE_TO_RGB = Maps.newEnumMap(Arrays.stream(DyenamicDyeColor.values()).collect(Collectors.toMap((DyenamicDyeColor p_200204_0_) -> {
-      return p_200204_0_;
+   protected static final Map<DyenamicDyeColor, float[]> DYE_TO_RGB = Maps.newEnumMap(Arrays.stream(DyenamicDyeColor.values()).collect(Collectors.toMap((DyenamicDyeColor color) -> {
+      return color;
    }, DyenamicSheepEntity::createSheepColor)));
 
    protected static float[] createSheepColor(DyenamicDyeColor dyeColorIn) {
-       float[] afloat = dyeColorIn.getColorComponentValues();
-       float f = 0.75F;
-       return new float[]{afloat[0] * f, afloat[1] * f, afloat[2] * f};
+	   if (dyeColorIn == DyenamicDyeColor.WHITE) {
+	         return new float[]{0.9019608F, 0.9019608F, 0.9019608F};
+	      } else {
+	         float[] afloat = dyeColorIn.getColorComponentValues();
+	         float f = 0.75F;
+	         return new float[]{afloat[0] * f, afloat[1] * f, afloat[2] * f};
+	      }
    }
 
    @OnlyIn(Dist.CLIENT)
@@ -59,6 +65,55 @@ public class DyenamicSheepEntity extends SheepEntity {
 
    public DyenamicSheepEntity(EntityType<? extends DyenamicSheepEntity> type, World worldIn) {
       super(type, worldIn);
+   }
+   
+   /*
+   public DyenamicSheepEntity(EntityType<? extends DyenamicSheepEntity> type, World worldIn, DyenamicDyeColor color) {
+	   super(type, worldIn);
+	   this.setFleeceColor(color);
+   }
+	*/
+   
+   public static AttributeModifierMap.MutableAttribute registerAttributes() {
+      return SheepEntity.func_234225_eI_();
+   }
+   
+   /*
+    * Methods for converting between vanilla and dyenamics sheeps. Deletes the old sheep and spawns a new one.
+    */
+   public static SheepEntity convertToVanilla(DyenamicSheepEntity oldSheep) {
+	   return convertToVanilla(oldSheep, DyeColor.WHITE);
+   }
+   
+   public static SheepEntity convertToVanilla(DyenamicSheepEntity oldSheep, DyeColor color) {
+	   World world = oldSheep.world;
+	   if (!world.isRemote) {
+		   SheepEntity sheep = new SheepEntity(EntityType.SHEEP, world);
+		   sheep.setFleeceColor(color);
+		   world.addEntity(sheep);
+		   sheep.copyLocationAndAnglesFrom(oldSheep);
+		   oldSheep.remove();
+		   return sheep;
+	   }
+	   return null;
+   }
+   
+   public static DyenamicSheepEntity convertToDyenamics(SheepEntity oldSheep) {
+	   return convertToDyenamics(oldSheep, DyenamicDyeColor.PEACH);
+   }
+   
+   public static DyenamicSheepEntity convertToDyenamics(SheepEntity oldSheep, DyenamicDyeColor color) {
+	   World world = oldSheep.world;
+	   if (!oldSheep.world.isRemote) {
+		   oldSheep.remove();
+		   DyenamicSheepEntity sheep = new DyenamicSheepEntity(Init.SHEEP.get(), oldSheep.world);
+		   sheep.setFleeceColor(color);
+		   oldSheep.world.addEntity(sheep);
+		   sheep.copyLocationAndAnglesFrom(oldSheep);
+		   oldSheep.remove();
+		   return sheep;
+	   }
+	   return null;
    }
 
    //TODO: use own loot tables
@@ -126,7 +181,6 @@ public class DyenamicSheepEntity extends SheepEntity {
             itementity.setMotion(itementity.getMotion().add((double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F), (double)(this.rand.nextFloat() * 0.05F), (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F)));
          }
       }
-
    }
 
    public void writeAdditional(CompoundNBT compound) {
@@ -143,8 +197,6 @@ public class DyenamicSheepEntity extends SheepEntity {
       this.setSheared(compound.getBoolean("Sheared"));
       this.setFleeceColor(DyenamicDyeColor.byId(compound.getByte("Color"))); 
    }
-
-  
    
    public DyenamicDyeColor getDyenamicFleeceColor() {
       return DyenamicDyeColor.byId(this.dataManager.get(DYE_COLOR) & 127); 
@@ -155,8 +207,8 @@ public class DyenamicSheepEntity extends SheepEntity {
     */
    public void setFleeceColor(DyeColor color) {
 	      byte b0 = this.dataManager.get(DYE_COLOR);
-	      //TODO: exchange for vanilla sheep
-	      this.dataManager.set(DYE_COLOR, (byte)(b0 & 240 | color.getId() & 15));
+	      //TODO: exchange for vanilla sheep?
+	      this.dataManager.set(DYE_COLOR, (byte)(b0 & -128 | color.getId() & 15));
    }
    
    public void setFleeceColor(DyenamicDyeColor color) {
@@ -168,19 +220,19 @@ public class DyenamicSheepEntity extends SheepEntity {
     * returns true if a sheep's wool has been sheared
     */
    public boolean getSheared() {
-      return this.dataManager.get(DYE_COLOR) > 0;
+      return this.dataManager.get(DYE_COLOR) < 0;
    }
    
 
    /**
-    * Make a sheep sheared if set to true (positive = sheared, negative = unsheared)
+    * Make a sheep sheared if set to true (positive = unsheared, negative = sheared)
     */
    public void setSheared(boolean sheared) {
       byte b0 = this.dataManager.get(DYE_COLOR);
       if (sheared) {
-         this.dataManager.set(DYE_COLOR, (byte)(b0 & 127));
-      } else {
          this.dataManager.set(DYE_COLOR, (byte)(b0 | -128));
+      } else {
+         this.dataManager.set(DYE_COLOR, (byte)(b0 & 127));
       }
 
    }
@@ -194,8 +246,9 @@ public class DyenamicSheepEntity extends SheepEntity {
 
    @Nullable
    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-      this.setFleeceColor(DyenamicDyeColor.PEACH);
-      return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag); //TODO: fix, somehow
+	  ILivingEntityData data = super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+	  this.setFleeceColor(DyenamicDyeColor.PEACH);
+      return data;
    }
 
    /**

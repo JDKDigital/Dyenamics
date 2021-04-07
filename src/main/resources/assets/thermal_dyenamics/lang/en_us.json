@@ -19,5 +19,6 @@
     "block.thermal_dyenamics.fluorescent_concrete": "Fluorescent Concrete",
     "block.thermal_dyenamics.fluorescent_concrete_powder": "Fluorescent Concrete Powder",
     "block.thermal_dyenamics.fluorescent_wool": "Fluorescent Wool",
-    "block.thermal_dyenamics.fluorescent_carpet": "Fluorescent Carpet"
+    "block.thermal_dyenamics.fluorescent_carpet": "Fluorescent Carpet",
+    "entity.thermal_dyenamics.sheep": "Sheep"
 }

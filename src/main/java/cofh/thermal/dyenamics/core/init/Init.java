@@ -2,10 +2,12 @@ package cofh.thermal.dyenamics.core.init;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.function.Supplier;
 
 import cofh.thermal.dyenamics.ThermalDyenamics;
 import cofh.thermal.dyenamics.common.entities.DyenamicSheepEntity;
+import cofh.thermal.dyenamics.common.items.DyenamicDyeItem;
 import cofh.thermal.dyenamics.core.util.DyenamicDyeColor;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -18,6 +20,7 @@ import net.minecraft.client.renderer.entity.SheepRenderer;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.SheepEntity;
@@ -30,6 +33,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.Heightmap;
 
 public class Init {
@@ -51,14 +56,14 @@ public class Init {
 	public synchronized static void registerEntities() {
 		System.out.println("SEE THAT!! " + SHEEP);
 		System.out.println("SEE THIS!! " + SHEEP.isPresent());
-		//ITEMS.register("dyenamic_sheep_spawn_egg", () -> new SpawnEggItem(DYEABLE_ENTITIES.get("sheep").get(), 255, 255, new Item.Properties().group(ItemGroup.MISC)));
+		//ITEMS.register("dyenamic_sheep_spawn_egg", () -> new SpawnEggItem(SHEEP.get(), 255, 255, new Item.Properties().group(ItemGroup.MISC)));
 		
 	}
 	
 	public synchronized static void registerDyes() {
 		for (DyenamicDyeColor color : DyenamicDyeColor.dyenamicValues()) {
 			String colorName = color.getString();
-			DYE_ITEMS.put(colorName + "_dye", ITEMS.register(colorName + "_dye", () -> new Item(new Item.Properties().group(ItemGroup.MISC))));
+			DYE_ITEMS.put(colorName + "_dye", ITEMS.register(colorName + "_dye", () -> new DyenamicDyeItem(color, new Item.Properties().group(ItemGroup.MISC))));
 			registerDyeBlocks(colorName, color.getLightValue());
 		}
 	}
@@ -89,6 +94,6 @@ public class Init {
 	
 	public static void setup() {
 		GlobalEntityTypeAttributes.put(SHEEP.get(), DyenamicSheepEntity.registerAttributes().create());
-		EntitySpawnPlacementRegistry.register(SHEEP.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canAnimalSpawn);
+		EntitySpawnPlacementRegistry.register(SHEEP.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (animal, worldIn, reason, pos, random) -> false);
 	}
 }

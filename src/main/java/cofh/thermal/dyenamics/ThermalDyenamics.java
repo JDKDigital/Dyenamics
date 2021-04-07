@@ -11,7 +11,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import cofh.thermal.dyenamics.core.init.EntityInit;
 import cofh.thermal.dyenamics.core.init.Init;
 
 

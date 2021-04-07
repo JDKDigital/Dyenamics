@@ -72,6 +72,7 @@ public enum DyenamicDyeColor implements IStringSerializable{
       this.swappedColorValue = k << 16 | j << 8 | i << 0;
       this.tag = net.minecraft.tags.ItemTags.createOptional(new net.minecraft.util.ResourceLocation("forge", "dyes/" + translationKeyIn));
       this.colorComponentValues = new float[]{(float)i / 255.0F, (float)j / 255.0F, (float)k / 255.0F};
+      System.out.println(translationKeyIn + " dye: " + this.colorComponentValues.toString());
       this.fireworkColor = fireworkColorIn;
    }
 
