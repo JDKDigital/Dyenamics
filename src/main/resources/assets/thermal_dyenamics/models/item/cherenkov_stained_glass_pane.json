@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:item/generated",
+    "textures": {
+        "layer0": "thermal_dyenamics:block/cherenkov_stained_glass_pane"
+    }
+}

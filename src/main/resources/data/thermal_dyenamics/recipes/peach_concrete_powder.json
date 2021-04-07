@@ -3,7 +3,7 @@
     "group": "concrete_powder",
     "ingredients": [
         {
-            "item": "peach_dye"
+            "item": "thermal_dyenamics:peach_dye"
         },
         {
             "item": "minecraft:sand"

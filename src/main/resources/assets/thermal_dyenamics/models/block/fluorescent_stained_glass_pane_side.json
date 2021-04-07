@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:block/template_glass_pane_side",
+    "textures": {
+        "pane": "thermal_dyenamics:block/fluorescent_stained_glass",
+        "edge": "thermal_dyenamics:block/fluorescent_stained_glass_pane_top"
+    }
+}

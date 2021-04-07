@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:block/cube_all",
+    "textures": {
+        "all": "thermal_dyenamics:block/bubblegum_stained_glass"
+    }
+}

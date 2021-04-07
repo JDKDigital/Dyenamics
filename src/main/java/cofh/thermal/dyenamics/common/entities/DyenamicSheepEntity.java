@@ -11,19 +11,14 @@ import javax.annotation.Nullable;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
@@ -104,11 +99,11 @@ public class DyenamicSheepEntity extends SheepEntity {
    
    public static DyenamicSheepEntity convertToDyenamics(SheepEntity oldSheep, DyenamicDyeColor color) {
 	   World world = oldSheep.world;
-	   if (!oldSheep.world.isRemote) {
+	   if (!world.isRemote) {
 		   oldSheep.remove();
-		   DyenamicSheepEntity sheep = new DyenamicSheepEntity(Init.SHEEP.get(), oldSheep.world);
+		   DyenamicSheepEntity sheep = new DyenamicSheepEntity(Init.SHEEP.get(), world);
 		   sheep.setFleeceColor(color);
-		   oldSheep.world.addEntity(sheep);
+		   world.addEntity(sheep);
 		   sheep.copyLocationAndAnglesFrom(oldSheep);
 		   oldSheep.remove();
 		   return sheep;

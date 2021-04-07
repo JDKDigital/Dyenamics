@@ -2,7 +2,6 @@ package cofh.thermal.dyenamics.core.init;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import java.util.function.Supplier;
 
 import cofh.thermal.dyenamics.ThermalDyenamics;
@@ -14,16 +13,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CarpetBlock;
 import net.minecraft.block.ConcretePowderBlock;
-import net.minecraft.block.FireBlock;
 import net.minecraft.block.GlazedTerracottaBlock;
-import net.minecraft.client.renderer.entity.SheepRenderer;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
@@ -31,10 +25,6 @@ import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraft.item.SpawnEggItem;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.Heightmap;
 
 public class Init {
@@ -48,17 +38,13 @@ public class Init {
 	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, ThermalDyenamics.MOD_ID);
 	public static final RegistryObject<EntityType<DyenamicSheepEntity>> SHEEP = ENTITIES.register("sheep", () -> EntityType.Builder.create(DyenamicSheepEntity::new, EntityClassification.CREATURE).build("sheep"));
 	
+	//public static final Map<String, RegistryObject<Item>> DYE_ITEMS = new HashMap<>();
+	
 	public static void register() {
 		registerDyes();
-		registerEntities();
 	}
 	
-	public synchronized static void registerEntities() {
-		System.out.println("SEE THAT!! " + SHEEP);
-		System.out.println("SEE THIS!! " + SHEEP.isPresent());
-		//ITEMS.register("dyenamic_sheep_spawn_egg", () -> new SpawnEggItem(SHEEP.get(), 255, 255, new Item.Properties().group(ItemGroup.MISC)));
-		
-	}
+	//ITEMS.register("dyenamic_sheep_spawn_egg", () -> new SpawnEggItem(SHEEP.get(), 255, 255, new Item.Properties().group(ItemGroup.MISC)));
 	
 	public synchronized static void registerDyes() {
 		for (DyenamicDyeColor color : DyenamicDyeColor.dyenamicValues()) {

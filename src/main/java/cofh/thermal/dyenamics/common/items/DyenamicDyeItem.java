@@ -27,7 +27,6 @@ public class DyenamicDyeItem extends Item {
    /**
     * Returns true if the item can be used on the given entity, e.g. shears on sheep.
     */
-   //TODO: replace MC sheep with dyenamic, or recolor dyenamic
    public ActionResultType itemInteractionForEntity(ItemStack stack, PlayerEntity playerIn, LivingEntity target, Hand hand) {
       if (target instanceof DyenamicSheepEntity) {
     	 DyenamicSheepEntity sheepentity = (DyenamicSheepEntity)target;

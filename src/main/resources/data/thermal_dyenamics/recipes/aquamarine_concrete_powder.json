@@ -3,7 +3,7 @@
     "group": "concrete_powder",
     "ingredients": [
         {
-            "item": "aquamarine_dye"
+            "item": "thermal_dyenamics:aquamarine_dye"
         },
         {
             "item": "minecraft:sand"

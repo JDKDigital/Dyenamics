@@ -11,6 +11,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import cofh.thermal.dyenamics.client.render.entity.DyenamicSheepRenderer;
 import cofh.thermal.dyenamics.core.init.Init;
 
 
@@ -43,7 +44,7 @@ public class ThermalDyenamics
     }
     
     private void clientSetup(final FMLClientSetupEvent event) {
-    	RenderingRegistry.registerEntityRenderingHandler(Init.SHEEP.get(), SheepRenderer::new);
+    	RenderingRegistry.registerEntityRenderingHandler(Init.SHEEP.get(), DyenamicSheepRenderer::new);
     }
     
     

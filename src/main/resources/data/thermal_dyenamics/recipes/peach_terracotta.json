@@ -11,7 +11,7 @@
             "item": "minecraft:terracotta"
         },
         "X": {
-            "item": "peach_dye"
+            "item": "thermal_dyenamics:peach_dye"
         }
     },
     "result": {

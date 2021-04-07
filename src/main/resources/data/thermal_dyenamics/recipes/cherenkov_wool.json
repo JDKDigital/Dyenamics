@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "wool",
+    "ingredients": [
+        {
+            "item": "thermal_dyenamics:cherenkov_dye"
+        },
+        {
+            "item": "minecraft:white_wool"
+        }
+    ],
+    "result": {
+        "item": "thermal_dyenamics:cherenkov_wool"
+    }
+}

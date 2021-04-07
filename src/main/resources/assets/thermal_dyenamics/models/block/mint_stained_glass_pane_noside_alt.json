@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:block/template_glass_pane_noside_alt",
+    "textures": {
+        "pane": "thermal_dyenamics:block/mint_stained_glass"
+    }
+}

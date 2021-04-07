@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:block/template_glass_pane_noside",
+    "textures": {
+        "pane": "thermal_dyenamics:block/bubblegum_stained_glass"
+    }
+}
