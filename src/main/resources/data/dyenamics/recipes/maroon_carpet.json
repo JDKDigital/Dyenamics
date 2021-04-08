@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "carpet",
+    "pattern": [
+        "##"
+    ],
+    "key": {
+        "#": {
+            "item": "dyenamics:maroon_wool"
+        }
+    },
+    "result": {
+        "item": "dyenamics:maroon_carpet",
+        "count": 3
+    }
+}

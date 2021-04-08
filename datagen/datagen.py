@@ -1,18 +1,21 @@
 import json
 import os
 
-modid = "thermal_dyenamics"
+modid = "dyenamics"
 paths = {"recipes": f"resources/data/{modid}/recipes",
 	"block_loot": f"resources/data/{modid}/loot_tables/blocks",
 	"sheep_loot": f"resources/data/{modid}/loot_tables/entities/sheep",
 	"blockstates": f"resources/assets/{modid}/blockstates",
 	"block_models": f"resources/assets/{modid}/models/block",
 	"item_models": f"resources/assets/{modid}/models/item",
+	"item_tags": f"resources/data/minecraft/tags/item",
+	"block_tags": f"resources/data/minecraft/tags/block",
 	"lang": f"resources/assets/{modid}/lang"
 }
 
-dyes = ["peach", "aquamarine", "fluorescent", "mint", "maroon", "bubblegum", "lavender", "persimmon", "cherenkov"]
+colors = ["peach", "aquamarine", "fluorescent", "mint", "maroon", "bubblegum", "lavender", "persimmon", "cherenkov"]
 blocks = ["terracotta", "glazed_terracotta", "concrete", "concrete_powder", "wool", "carpet", "stained_glass", "stained_glass_pane"]
+taggedBlocks = ["wool", "carpet"]
 items = ["dye"]
 
 #File Layout
@@ -23,12 +26,12 @@ def genFolders():
 #en_us Lang
 def genLang():
 	lang = {}
-	for dye in dyes:
+	for color in colors:
 		for item in items:
-			name = dye + "_" + item
+			name = color + "_" + item
 			lang[f"item.{modid}.{name}"] = " ".join([word.capitalize() for word in name.split("_")])
 		for block in blocks:
-			name = dye + "_" + block
+			name = color + "_" + block
 			lang[f"block.{modid}.{name}"] = " ".join([word.capitalize() for word in name.split("_")])
 	lang[f"entity.{modid}.sheep"] = "Sheep"
 	with open(f"{paths['lang']}/en_us.json", "x") as file:
@@ -47,7 +50,7 @@ def genRecipes():
 		"paneGlass": json.load(open("templates/stained_pane_from_glass_pane_recipe.json"))
 	}
 	
-	for color in dyes:
+	for color in colors:
 		dye = f"{modid}:{color}_dye"
 		for block in blocks:
 			name = color + "_" + block
@@ -102,9 +105,9 @@ def genBlockLootTables():
 		"block": json.load(open("templates/block_loot.json")),
 		"glass": json.load(open("templates/glass_loot.json"))
 	}
-	for dye in dyes:
+	for color in colors:
 		for block in blocks:
-			name = dye + "_" + block
+			name = color + "_" + block
 			if block.startswith("stained_glass"):
 				templates["glass"]["pools"][0]["entries"][0]["name"] = f"{modid}:{name}"
 				with open(f"{paths['block_loot']}/{name}.json", "x") as file:
@@ -117,9 +120,9 @@ def genBlockLootTables():
 #Sheep Loot Tables
 def genSheepLootTables():
 	template = json.load(open("templates/sheep_loot.json"))
-	for dye in dyes:
-		template["pools"][0]["entries"][0]["name"] = f"{modid}:{dye}_wool"
-		with open(f"{paths['sheep_loot']}/{dye}.json", "x") as file:
+	for color in colors:
+		template["pools"][0]["entries"][0]["name"] = f"{modid}:{color}_wool"
+		with open(f"{paths['sheep_loot']}/{color}.json", "x") as file:
 			file.write(json.dumps(template, indent = 4))
 
 #Blockstates
@@ -130,9 +133,9 @@ def genBlockstates():
 		"pane": json.load(open("templates/stained_pane_blockstate.json"))
 	}
 	
-	for dye in dyes:
+	for color in colors:
 		for block in blocks:
-			name = dye + "_" + block
+			name = color + "_" + block
 			path = f"{paths['blockstates']}/{name}.json"
 			if block == "glazed_terracotta":
 				for variant in templates["glazed"]["variants"]:
@@ -177,21 +180,21 @@ def genBlockModels():
 		}
 	}
 	
-	for dye in dyes:
+	for color in colors:
 		for block in blocks:
-			name = dye + "_" + block
+			name = color + "_" + block
 			path = f"{paths['block_models']}/{name}.json"
 			if block == "glazed_terracotta":
 				templates["glazed"]["textures"]["pattern"] = f"{modid}:block/{name}"
 				with open(path, "x") as file:
 					file.write(json.dumps(templates["glazed"], indent = 4))
 			elif block == "carpet":
-				templates["carpet"]["textures"]["wool"] = f"{modid}:block/{dye}_wool"
+				templates["carpet"]["textures"]["wool"] = f"{modid}:block/{color}_wool"
 				with open(path, "x") as file:
 					file.write(json.dumps(templates["carpet"], indent = 4))
 			elif block == "stained_glass_pane":
-				pane = f"{modid}:block/{dye}_stained_glass"
-				edge = f"{modid}:block/{dye}_stained_glass_pane_top"
+				pane = f"{modid}:block/{color}_stained_glass"
+				edge = f"{modid}:block/{color}_stained_glass_pane_top"
 				for template in templates["pane"]:
 					input = templates["pane"][template]["textures"]
 					input["pane"] = pane
@@ -208,9 +211,9 @@ def genBlockModels():
 def genItemModels():
 	blockTemplate = json.load(open("templates/blockitem_model.json"))
 	itemTemplate = json.load(open("templates/item_model.json"))
-	for dye in dyes:
+	for color in colors:
 		for block in blocks:
-			name = dye + "_" + block
+			name = color + "_" + block
 			if block == "stained_glass_pane":
 				itemTemplate["textures"]["layer0"] = f"{modid}:block/{name}"
 				with open(f"{paths['item_models']}/{name}.json", "x") as file:
@@ -220,10 +223,23 @@ def genItemModels():
 				with open(f"{paths['item_models']}/{name}.json", "x") as file:
 					file.write(json.dumps(blockTemplate, indent = 4))
 		for item in items:
-			name = dye + "_" + item
+			name = color + "_" + item
 			itemTemplate["textures"]["layer0"] = f"{modid}:item/{name}"
 			with open(f"{paths['item_models']}/{name}.json", "x") as file:
 				file.write(json.dumps(itemTemplate, indent = 4))
+
+def genTags():
+	template = json.load(open("templates/tag.json"))
+	for block in taggedBlocks:
+		ids = []
+		for color in colors:
+			ids.append(f"{color}_{block}")
+		template["values"] = ids
+		with open(f"{paths['block_tags']}/{block}.json", "x") as file:
+			file.write(json.dumps(template, indent = 4))
+		with open(f"{paths['item_tags']}/{block}.json", "x") as file:
+			file.write(json.dumps(template, indent = 4))
+	
 
 genFolders()
 genLang()
@@ -233,3 +249,4 @@ genSheepLootTables()
 genBlockstates()
 genBlockModels()
 genItemModels()
+genTags()

@@ -1,6 +1,0 @@
-{
-    "parent": "minecraft:block/cube_all",
-    "textures": {
-        "all": "thermal_dyenamics:block/fluorescent_stained_glass"
-    }
-}

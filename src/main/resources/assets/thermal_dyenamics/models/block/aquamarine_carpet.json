@@ -1,6 +1,0 @@
-{
-    "parent": "minecraft:block/carpet",
-    "textures": {
-        "wool": "thermal_dyenamics:block/aquamarine_wool"
-    }
-}

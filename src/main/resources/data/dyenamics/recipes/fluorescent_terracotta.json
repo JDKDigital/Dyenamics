@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "stained_terracotta",
+    "pattern": [
+        "###",
+        "#X#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:terracotta"
+        },
+        "X": {
+            "item": "dyenamics:fluorescent_dye"
+        }
+    },
+    "result": {
+        "item": "dyenamics:fluorescent_terracotta",
+        "count": 8
+    }
+}

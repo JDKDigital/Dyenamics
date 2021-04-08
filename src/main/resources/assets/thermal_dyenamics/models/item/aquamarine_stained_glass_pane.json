@@ -1,6 +1,0 @@
-{
-    "parent": "minecraft:item/generated",
-    "textures": {
-        "layer0": "thermal_dyenamics:block/aquamarine_stained_glass_pane"
-    }
-}

@@ -1,6 +1,0 @@
-{
-    "parent": "minecraft:block/template_glazed_terracotta",
-    "textures": {
-        "pattern": "thermal_dyenamics:block/mint_glazed_terracotta"
-    }
-}

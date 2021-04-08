@@ -4,7 +4,7 @@ from PIL.ImageColor import getcolor, getrgb
 from PIL.ImageOps import grayscale
 
 
-modid = "thermal_dyenamics"
+modid = "dyenamics"
 folder = f"resources/assets/{modid}/textures/block"
 
 colors = {"peach": "#BF9873", 

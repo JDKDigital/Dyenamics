@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "dyenamics:lavender_terracotta"
+    },
+    "result": "dyenamics:lavender_glazed_terracotta",
+    "experience": 0.1,
+    "cookingtime": 200
+}
