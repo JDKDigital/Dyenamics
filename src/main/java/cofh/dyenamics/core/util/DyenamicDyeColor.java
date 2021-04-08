@@ -1,4 +1,4 @@
-package dyenamics.core.util;
+package cofh.dyenamics.core.util;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
 
-import dyenamics.common.items.DyenamicDyeItem;
+import cofh.dyenamics.common.items.DyenamicDyeItem;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.DyeColor;

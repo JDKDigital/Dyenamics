@@ -1,4 +1,4 @@
-package dyenamics;
+package cofh.dyenamics;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -10,15 +10,15 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import dyenamics.client.render.entity.DyenamicSheepRenderer;
-import dyenamics.core.init.BlockInit;
-import dyenamics.core.init.EntityInit;
-import dyenamics.core.init.ItemInit;
+import cofh.dyenamics.client.render.entity.DyenamicSheepRenderer;
+import cofh.dyenamics.core.init.BlockInit;
+import cofh.dyenamics.core.init.EntityInit;
+import cofh.dyenamics.core.init.ItemInit;
 
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(ThermalDyenamics.MOD_ID)
-public class ThermalDyenamics
+@Mod(Dyenamics.MOD_ID)
+public class Dyenamics
 {
 	static {
 		BlockInit.register();
@@ -29,7 +29,7 @@ public class ThermalDyenamics
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MOD_ID = "dyenamics";
 
-    public ThermalDyenamics() {
+    public Dyenamics() {
     	IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         // Register the setup method for modloading
         bus.addListener(this::commonSetup);

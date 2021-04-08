@@ -1,9 +1,9 @@
-package dyenamics.common.items;
+package cofh.dyenamics.common.items;
 
 import com.google.common.collect.Maps;
 
-import dyenamics.common.entities.DyenamicSheepEntity;
-import dyenamics.core.util.DyenamicDyeColor;
+import cofh.dyenamics.common.entities.DyenamicSheepEntity;
+import cofh.dyenamics.core.util.DyenamicDyeColor;
 
 import java.util.Map;
 import net.minecraft.entity.LivingEntity;

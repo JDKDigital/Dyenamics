@@ -1,4 +1,4 @@
-package dyenamics.client.render.entity;
+package cofh.dyenamics.client.render.entity;
 
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;

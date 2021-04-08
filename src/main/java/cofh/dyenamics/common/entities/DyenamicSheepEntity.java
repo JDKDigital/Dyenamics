@@ -1,10 +1,10 @@
-package dyenamics.common.entities;
+package cofh.dyenamics.common.entities;
 
 import com.google.common.collect.Maps;
 
-import dyenamics.core.init.BlockInit;
-import dyenamics.core.init.EntityInit;
-import dyenamics.core.util.DyenamicDyeColor;
+import cofh.dyenamics.core.init.BlockInit;
+import cofh.dyenamics.core.init.EntityInit;
+import cofh.dyenamics.core.util.DyenamicDyeColor;
 
 import java.util.Arrays;
 import java.util.Map;

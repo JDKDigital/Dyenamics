@@ -1,11 +1,11 @@
-package dyenamics.core.init;
+package cofh.dyenamics.core.init;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import dyenamics.ThermalDyenamics;
-import dyenamics.core.util.DyenamicDyeColor;
+import cofh.dyenamics.Dyenamics;
+import cofh.dyenamics.core.util.DyenamicDyeColor;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -22,7 +22,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class BlockInit {
 	
-	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, ThermalDyenamics.MOD_ID);
+	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Dyenamics.MOD_ID);
 	public static final Map<String, Map<String, RegistryObject<Block>>> DYED_BLOCKS = new HashMap<>();
 	
 	public static void register() {

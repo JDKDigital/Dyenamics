@@ -1,8 +1,8 @@
-package dyenamics.client.render.entity;
+package cofh.dyenamics.client.render.entity;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-import dyenamics.common.entities.DyenamicSheepEntity;
+import cofh.dyenamics.common.entities.DyenamicSheepEntity;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.SheepWoolLayer;
