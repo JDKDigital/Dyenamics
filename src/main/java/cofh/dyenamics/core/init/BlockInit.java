@@ -10,8 +10,6 @@ import cofh.dyenamics.common.blocks.DyenamicFlammableBlock;
 import cofh.dyenamics.core.util.DyenamicDyeColor;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.CarpetBlock;
 import net.minecraft.block.ConcretePowderBlock;
 import net.minecraft.block.GlazedTerracottaBlock;
 import net.minecraft.block.SoundType;

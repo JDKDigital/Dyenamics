@@ -7,7 +7,6 @@ import cofh.dyenamics.core.util.DyenamicDyeColor;
 
 import java.util.Map;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;

@@ -16,14 +16,6 @@ import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.goal.BreedGoal;
-import net.minecraft.entity.ai.goal.EatGrassGoal;
-import net.minecraft.entity.ai.goal.FollowParentGoal;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.PanicGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.TemptGoal;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.SheepEntity;
@@ -32,7 +24,6 @@ import net.minecraft.item.DyeColor;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -143,8 +134,8 @@ public class DyenamicSheepEntity extends SheepEntity {
       }
    }
    
-   public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
-	      ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
+   public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
+	      ItemStack itemstack = player.getHeldItem(hand);
 	      if (itemstack.getItem() instanceof DyeItem) { 
 	         if (!this.world.isRemote) {
 	            DyenamicSheepEntity.convertToVanilla(this, ((DyeItem) itemstack.getItem()).getDyeColor());
@@ -168,7 +159,7 @@ public class DyenamicSheepEntity extends SheepEntity {
 		      }
 	      }
 	      else {
-	         return super.func_230254_b_(p_230254_1_, p_230254_2_);
+	         return super.func_230254_b_(player, hand);
 	      }
 	   }
 
