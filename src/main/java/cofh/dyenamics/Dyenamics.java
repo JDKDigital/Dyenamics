@@ -38,7 +38,6 @@ public class Dyenamics
         ItemInit.ITEMS.register(bus);
         EntityInit.ENTITIES.register(bus);
         
-        // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -49,6 +48,4 @@ public class Dyenamics
     private void clientSetup(final FMLClientSetupEvent event) {
     	RenderingRegistry.registerEntityRenderingHandler(EntityInit.SHEEP.get(), DyenamicSheepRenderer::new);
     }
-    
-    
 }

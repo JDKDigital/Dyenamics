@@ -21,8 +21,6 @@ public class EntityInit {
 	public static final RegistryObject<EntityType<DyenamicSheepEntity>> SHEEP = ENTITIES.register("sheep", () -> EntityType.Builder.create(DyenamicSheepEntity::new, EntityClassification.CREATURE).build("sheep"));
 	public static final Map<String, ResourceLocation> SHEEP_LOOT = new HashMap<>();
 
-	
-
 	public static void register() {
 		for (DyenamicDyeColor color : DyenamicDyeColor.dyenamicValues()) {
 			SHEEP_LOOT.put(color.getTranslationKey(), new ResourceLocation(Dyenamics.MOD_ID, "entities/sheep/" + color.getTranslationKey()));

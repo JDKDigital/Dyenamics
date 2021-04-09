@@ -15,13 +15,24 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.goal.BreedGoal;
+import net.minecraft.entity.ai.goal.EatGrassGoal;
+import net.minecraft.entity.ai.goal.FollowParentGoal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.PanicGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.TemptGoal;
+import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -74,6 +85,11 @@ public class DyenamicSheepEntity extends SheepEntity {
 	   this.setFleeceColor(color);
    }
 	*/
+   
+   protected void registerGoals() {
+	  super.registerGoals();
+      this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D, SheepEntity.class));
+	}
    
    public static AttributeModifierMap.MutableAttribute registerAttributes() {
       return SheepEntity.func_234225_eI_();
@@ -215,7 +231,6 @@ public class DyenamicSheepEntity extends SheepEntity {
    public boolean getSheared() {
       return this.dataManager.get(DYE_COLOR) < 0;
    }
-   
 
    /**
     * Make a sheep sheared if set to true (positive = unsheared, negative = sheared)
@@ -227,14 +242,30 @@ public class DyenamicSheepEntity extends SheepEntity {
       } else {
          this.dataManager.set(DYE_COLOR, (byte)(b0 & 127));
       }
-
    }
 
-   public DyenamicSheepEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
-      DyenamicSheepEntity sheepentity = (DyenamicSheepEntity)p_241840_2_;
-      DyenamicSheepEntity sheepentity1 = (DyenamicSheepEntity) EntityInit.SHEEP.get().create(p_241840_1_); 
-      sheepentity1.setFleeceColor(this.getDyeColorMixFromParents(this, sheepentity));
-      return sheepentity1;
+   public SheepEntity func_241840_a(ServerWorld world, AgeableEntity mate) {
+	   if (mate instanceof DyenamicSheepEntity) {
+		   DyenamicSheepEntity parent = (DyenamicSheepEntity)mate;
+		   DyenamicSheepEntity child = (DyenamicSheepEntity) EntityInit.SHEEP.get().create(world); 
+		   child.setFleeceColor(this.getDyeColorMixFromParents(this, parent));
+		   return child;
+	   }
+	   else {
+		   SheepEntity parent = (SheepEntity)mate;
+		   DyenamicDyeColor color = this.getDyeColorMixFromParents(this, parent);
+		   if (color.getId() < 16) {
+			   SheepEntity child = (SheepEntity) EntityType.SHEEP.create(world); 
+			   child.setFleeceColor(color.getAnalogue());
+			   return child;
+		   }
+		   else {
+			   DyenamicSheepEntity child = (DyenamicSheepEntity) EntityInit.SHEEP.get().create(world); 
+			   child.setFleeceColor(color);
+			   return child;
+		   }
+		   
+	   }
    }
 
    @Nullable
@@ -244,10 +275,23 @@ public class DyenamicSheepEntity extends SheepEntity {
       return data;
    }
 
+   @Override
+   public boolean canMateWith(AnimalEntity otherAnimal) {
+      if (otherAnimal == this) {
+         return false;
+      } else if (otherAnimal instanceof SheepEntity) {
+    	  return this.isInLove() && otherAnimal.isInLove();
+      }
+      else if (otherAnimal.getClass() != this.getClass()) {
+         return false;
+      } else {
+         return this.isInLove() && otherAnimal.isInLove();
+      }
+   }
+   
    /**
     * Attempts to mix both parent sheep to come up with a mixed dye color.
     */
-   //TODO: accept both vanilla and dyenamic
    protected DyenamicDyeColor getDyeColorMixFromParents(SheepEntity father, DyenamicSheepEntity mother) {
 	   return this.world.rand.nextBoolean() ? DyenamicDyeColor.byId(father.getFleeceColor().getId()) : ((DyenamicSheepEntity)mother).getDyenamicFleeceColor(); 
    }

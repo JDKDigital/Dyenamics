@@ -8,8 +8,8 @@ paths = {"recipes": f"resources/data/{modid}/recipes",
 	"blockstates": f"resources/assets/{modid}/blockstates",
 	"block_models": f"resources/assets/{modid}/models/block",
 	"item_models": f"resources/assets/{modid}/models/item",
-	"item_tags": f"resources/data/minecraft/tags/item",
-	"block_tags": f"resources/data/minecraft/tags/block",
+	"item_tags": f"resources/data/minecraft/tags/items",
+	"block_tags": f"resources/data/minecraft/tags/blocks",
 	"lang": f"resources/assets/{modid}/lang"
 }
 
@@ -233,7 +233,7 @@ def genTags():
 	for block in taggedBlocks:
 		ids = []
 		for color in colors:
-			ids.append(f"{color}_{block}")
+			ids.append(f"{modid}:{color}_{block}")
 		template["values"] = ids
 		with open(f"{paths['block_tags']}/{block}.json", "x") as file:
 			file.write(json.dumps(template, indent = 4))

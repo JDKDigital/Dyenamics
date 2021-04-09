@@ -1,0 +1,14 @@
+{
+    "replace": false,
+    "values": [
+        "dyenamics:peach_wool",
+        "dyenamics:aquamarine_wool",
+        "dyenamics:fluorescent_wool",
+        "dyenamics:mint_wool",
+        "dyenamics:maroon_wool",
+        "dyenamics:bubblegum_wool",
+        "dyenamics:lavender_wool",
+        "dyenamics:persimmon_wool",
+        "dyenamics:cherenkov_wool"
+    ]
+}
