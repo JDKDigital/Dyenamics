@@ -8,6 +8,7 @@ import cofh.dyenamics.Dyenamics;
 import cofh.dyenamics.common.blocks.DyenamicCarpetBlock;
 import cofh.dyenamics.common.blocks.DyenamicFlammableBlock;
 import cofh.dyenamics.common.blocks.DyenamicStainedGlassBlock;
+import cofh.dyenamics.common.blocks.DyenamicStainedGlassPane;
 import cofh.dyenamics.core.util.DyenamicDyeColor;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -51,6 +52,7 @@ public class BlockInit {
 		registerBlockAndItem(colorName, "wool", blocks, ItemGroup.BUILDING_BLOCKS, () -> new DyenamicFlammableBlock(AbstractBlock.Properties.create(Material.WOOL, mapColor).hardnessAndResistance(0.8F).sound(SoundType.CLOTH).setLightLevel((state) -> {return light;})));
 		registerBlockAndItem(colorName, "carpet", blocks, ItemGroup.DECORATIONS, () -> new DyenamicCarpetBlock(color, AbstractBlock.Properties.create(Material.CARPET, mapColor).hardnessAndResistance(0.1F).sound(SoundType.CLOTH).setLightLevel((state) -> {return light;})));
 		registerBlockAndItem(colorName, "stained_glass", blocks, ItemGroup.BUILDING_BLOCKS, () -> new DyenamicStainedGlassBlock(color, AbstractBlock.Properties.create(Material.GLASS, mapColor).hardnessAndResistance(0.3F).sound(SoundType.GLASS).notSolid().setLightLevel((state) -> {return light;})));
+		registerBlockAndItem(colorName, "stained_glass_pane", blocks, ItemGroup.BUILDING_BLOCKS, () -> new DyenamicStainedGlassPane(color, AbstractBlock.Properties.create(Material.GLASS, mapColor).hardnessAndResistance(0.3F).sound(SoundType.GLASS).notSolid().setLightLevel((state) -> {return light;})));
 	}
 
 	public synchronized static RegistryObject<Block> registerBlockAndItem(String color, String block, Map<String, RegistryObject<Block>> blockMap, ItemGroup group, Supplier<Block> supplier) {

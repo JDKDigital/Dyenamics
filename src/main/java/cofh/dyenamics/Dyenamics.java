@@ -64,5 +64,14 @@ public class Dyenamics
         RenderTypeLookup.setRenderLayer(BlockInit.DYED_BLOCKS.get("lavender").get("stained_glass").get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(BlockInit.DYED_BLOCKS.get("persimmon").get("stained_glass").get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(BlockInit.DYED_BLOCKS.get("cherenkov").get("stained_glass").get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BlockInit.DYED_BLOCKS.get("peach").get("stained_glass_pane").get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BlockInit.DYED_BLOCKS.get("aquamarine").get("stained_glass_pane").get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BlockInit.DYED_BLOCKS.get("fluorescent").get("stained_glass_pane").get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BlockInit.DYED_BLOCKS.get("mint").get("stained_glass_pane").get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BlockInit.DYED_BLOCKS.get("maroon").get("stained_glass_pane").get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BlockInit.DYED_BLOCKS.get("bubblegum").get("stained_glass_pane").get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BlockInit.DYED_BLOCKS.get("lavender").get("stained_glass_pane").get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BlockInit.DYED_BLOCKS.get("persimmon").get("stained_glass_pane").get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BlockInit.DYED_BLOCKS.get("cherenkov").get("stained_glass_pane").get(), RenderType.getTranslucent());
     }
 }
