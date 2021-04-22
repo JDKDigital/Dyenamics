@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:block/template_glass_pane_noside",
+    "textures": {
+        "pane": "dyenamics:block/peach_stained_glass"
+    }
+}

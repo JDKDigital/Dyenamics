@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "fluorescent_dye",
+  "ingredients": [
+    {
+      "item": "minecraft:yellow_dye"
+    },
+    {
+      "item": "minecraft:white_dye"
+    },
+    {
+      "item": "minecraft:glowstone_dust"
+    }
+  ],
+  "result": {
+    "item": "dyenamics:fluorescent_dye",
+    "count": 3
+  }
+}

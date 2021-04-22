@@ -1,0 +1,19 @@
+{
+    "variants": {
+        "facing=east": {
+            "model": "dyenamics:block/cherenkov_glazed_terracotta",
+            "y": 270
+        },
+        "facing=north": {
+            "model": "dyenamics:block/cherenkov_glazed_terracotta",
+            "y": 180
+        },
+        "facing=south": {
+            "model": "dyenamics:block/cherenkov_glazed_terracotta"
+        },
+        "facing=west": {
+            "model": "dyenamics:block/cherenkov_glazed_terracotta",
+            "y": 90
+        }
+    }
+}

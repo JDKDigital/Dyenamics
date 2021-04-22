@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:block/template_glass_pane_side_alt",
+    "textures": {
+        "pane": "dyenamics:block/peach_stained_glass",
+        "edge": "dyenamics:block/peach_stained_glass_pane_top"
+    }
+}

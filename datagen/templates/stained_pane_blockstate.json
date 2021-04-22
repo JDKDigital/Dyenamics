@@ -1,0 +1,77 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": ""
+      }
+    },
+    {
+      "when": {
+        "north": "true"
+      },
+      "apply": {
+        "model": ""
+      }
+    },
+    {
+      "when": {
+        "east": "true"
+      },
+      "apply": {
+        "model": "",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "south": "true"
+      },
+      "apply": {
+        "model": ""
+      }
+    },
+    {
+      "when": {
+        "west": "true"
+      },
+      "apply": {
+        "model": "",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "north": "false"
+      },
+      "apply": {
+        "model": ""
+      }
+    },
+    {
+      "when": {
+        "east": "false"
+      },
+      "apply": {
+        "model": ""
+      }
+    },
+    {
+      "when": {
+        "south": "false"
+      },
+      "apply": {
+        "model": "",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "west": "false"
+      },
+      "apply": {
+        "model": "",
+        "y": 270
+      }
+    }
+  ]
+}

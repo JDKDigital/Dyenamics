@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:block/template_glass_pane_post",
+    "textures": {
+        "pane": "dyenamics:block/cherenkov_stained_glass",
+        "edge": "dyenamics:block/cherenkov_stained_glass_pane_top"
+    }
+}

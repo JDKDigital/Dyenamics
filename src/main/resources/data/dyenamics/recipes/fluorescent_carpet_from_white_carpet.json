@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "carpet",
+    "pattern": [
+        "###",
+        "#$#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:white_carpet"
+        },
+        "$": {
+            "item": "dyenamics:fluorescent_dye"
+        }
+    },
+    "result": {
+        "item": "dyenamics:fluorescent_carpet",
+        "count": 8
+    }
+}

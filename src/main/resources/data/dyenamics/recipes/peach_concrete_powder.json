@@ -1,0 +1,37 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "concrete_powder",
+    "ingredients": [
+        {
+            "item": "dyenamics:peach_dye"
+        },
+        {
+            "item": "minecraft:sand"
+        },
+        {
+            "item": "minecraft:sand"
+        },
+        {
+            "item": "minecraft:sand"
+        },
+        {
+            "item": "minecraft:sand"
+        },
+        {
+            "item": "minecraft:gravel"
+        },
+        {
+            "item": "minecraft:gravel"
+        },
+        {
+            "item": "minecraft:gravel"
+        },
+        {
+            "item": "minecraft:gravel"
+        }
+    ],
+    "result": {
+        "item": "dyenamics:peach_concrete_powder",
+        "count": 8
+    }
+}

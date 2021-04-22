@@ -1,0 +1,14 @@
+{
+    "replace": false,
+    "values": [
+        "dyenamics:peach_carpet",
+        "dyenamics:aquamarine_carpet",
+        "dyenamics:fluorescent_carpet",
+        "dyenamics:mint_carpet",
+        "dyenamics:maroon_carpet",
+        "dyenamics:bubblegum_carpet",
+        "dyenamics:lavender_carpet",
+        "dyenamics:persimmon_carpet",
+        "dyenamics:cherenkov_carpet"
+    ]
+}
