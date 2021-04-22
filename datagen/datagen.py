@@ -215,7 +215,7 @@ def genItemModels():
 		for block in blocks:
 			name = color + "_" + block
 			if block == "stained_glass_pane":
-				itemTemplate["textures"]["layer0"] = f"{modid}:block/{name}"
+				itemTemplate["textures"]["layer0"] = f"{modid}:block/{color}_stained_glass"
 				with open(f"{paths['item_models']}/{name}.json", "x") as file:
 					file.write(json.dumps(itemTemplate, indent = 4))
 			else:

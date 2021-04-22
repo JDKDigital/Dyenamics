@@ -1,6 +1,6 @@
 {
     "parent": "minecraft:item/generated",
     "textures": {
-        "layer0": "dyenamics:block/peach_stained_glass_pane"
+        "layer0": "dyenamics:block/peach_stained_glass"
     }
 }

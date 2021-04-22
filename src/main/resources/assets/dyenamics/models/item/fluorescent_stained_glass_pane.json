@@ -1,6 +1,6 @@
 {
     "parent": "minecraft:item/generated",
     "textures": {
-        "layer0": "dyenamics:block/fluorescent_stained_glass_pane"
+        "layer0": "dyenamics:block/fluorescent_stained_glass"
     }
 }

@@ -24,6 +24,7 @@ import net.minecraft.item.DyeColor;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -33,6 +34,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -76,12 +78,13 @@ public class DyenamicSheepEntity extends SheepEntity {
 	   this.setFleeceColor(color);
    }
 	*/
-   
+
+   @Override
    protected void registerGoals() {
 	  super.registerGoals();
       this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D, SheepEntity.class));
 	}
-   
+
    public static AttributeModifierMap.MutableAttribute registerAttributes() {
       return SheepEntity.func_234225_eI_();
    }
@@ -126,6 +129,7 @@ public class DyenamicSheepEntity extends SheepEntity {
 	   return null;
    }
 
+   @Override
    public ResourceLocation getLootTable() {
       if (this.getSheared()) {
          return this.getType().getLootTable();
@@ -133,36 +137,38 @@ public class DyenamicSheepEntity extends SheepEntity {
          return EntityInit.SHEEP_LOOT.get(this.getDyenamicFleeceColor().getTranslationKey());
       }
    }
-   
+
+   @Override
    public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
-	      ItemStack itemstack = player.getHeldItem(hand);
-	      if (itemstack.getItem() instanceof DyeItem) { 
-	         if (!this.world.isRemote) {
-	            DyenamicSheepEntity.convertToVanilla(this, ((DyeItem) itemstack.getItem()).getDyeColor());
+      ItemStack itemstack = player.getHeldItem(hand);
+      if (itemstack.getItem() instanceof DyeItem) { 
+         if (!this.world.isRemote) {
+            DyenamicSheepEntity.convertToVanilla(this, ((DyeItem) itemstack.getItem()).getDyeColor());
+		  	itemstack.shrink(1);
+            return ActionResultType.SUCCESS;
+         } else {
+            return ActionResultType.CONSUME;
+         }
+      }
+      else if (itemstack.getItem().equals(Items.SHEEP_SPAWN_EGG)) {
+    	  if (!this.world.isRemote) {
+    		  	DyenamicSheepEntity sheep = new DyenamicSheepEntity(EntityInit.SHEEP.get(), this.world);
+    		  	sheep.copyLocationAndAnglesFrom(this);
+    		  	sheep.setChild(true);
+    		  	sheep.setFleeceColor(this.getDyenamicFleeceColor());
+    		  	this.world.addEntity(sheep);
     		  	itemstack.shrink(1);
 	            return ActionResultType.SUCCESS;
-	         } else {
-	            return ActionResultType.CONSUME;
-	         }
+	      } else {
+	         return ActionResultType.CONSUME;
 	      }
-	      else if (itemstack.getItem().equals(Items.SHEEP_SPAWN_EGG)) {
-	    	  if (!this.world.isRemote) {
-	    		  	DyenamicSheepEntity sheep = new DyenamicSheepEntity(EntityInit.SHEEP.get(), this.world);
-	    		  	sheep.copyLocationAndAnglesFrom(this);
-	    		  	sheep.setChild(true);
-	    		  	sheep.setFleeceColor(this.getDyenamicFleeceColor());
-	    		  	this.world.addEntity(sheep);
-	    		  	itemstack.shrink(1);
-		            return ActionResultType.SUCCESS;
-		      } else {
-		         return ActionResultType.CONSUME;
-		      }
-	      }
-	      else {
-	         return super.func_230254_b_(player, hand);
-	      }
-	   }
+      }
+      else {
+         return super.func_230254_b_(player, hand);
+      }
+   }
 
+   @Override
    public void shear(SoundCategory category) {
       this.world.playMovingSound((PlayerEntity)null, this, SoundEvents.ENTITY_SHEEP_SHEAR, category, 1.0F, 1.0F);
       this.setSheared(true);
@@ -184,6 +190,7 @@ public class DyenamicSheepEntity extends SheepEntity {
       }
    }
 
+   @Override
    public void writeAdditional(CompoundNBT compound) {
       super.writeAdditional(compound);
       compound.putBoolean("Sheared", this.getSheared());
@@ -193,6 +200,7 @@ public class DyenamicSheepEntity extends SheepEntity {
    /**
     * (abstract) Protected helper method to read subclass entity data from NBT.
     */
+   @Override
    public void readAdditional(CompoundNBT compound) {
       super.readAdditional(compound);
       this.setSheared(compound.getBoolean("Sheared"));
@@ -206,6 +214,7 @@ public class DyenamicSheepEntity extends SheepEntity {
    /**
     * Sets the wool color of this sheep
     */
+   @Override
    public void setFleeceColor(DyeColor color) {
 	      byte b0 = this.dataManager.get(DYE_COLOR);
 	      this.dataManager.set(DYE_COLOR, (byte)(b0 & -128 | color.getId() & 15));
@@ -219,6 +228,7 @@ public class DyenamicSheepEntity extends SheepEntity {
    /**
     * returns true if a sheep's wool has been sheared
     */
+   @Override
    public boolean getSheared() {
       return this.dataManager.get(DYE_COLOR) < 0;
    }
@@ -226,6 +236,7 @@ public class DyenamicSheepEntity extends SheepEntity {
    /**
     * Make a sheep sheared if set to true (positive = unsheared, negative = sheared)
     */
+   @Override
    public void setSheared(boolean sheared) {
       byte b0 = this.dataManager.get(DYE_COLOR);
       if (sheared) {
@@ -235,6 +246,7 @@ public class DyenamicSheepEntity extends SheepEntity {
       }
    }
 
+   @Override
    public SheepEntity func_241840_a(ServerWorld world, AgeableEntity mate) {
 	   if (mate instanceof DyenamicSheepEntity) {
 		   DyenamicSheepEntity parent = (DyenamicSheepEntity)mate;
@@ -318,6 +330,11 @@ public class DyenamicSheepEntity extends SheepEntity {
          return items;
       }
       return java.util.Collections.emptyList();
+   }
+   
+   @Override
+   public ItemStack getPickedResult(RayTraceResult target) {
+       return new ItemStack(SpawnEggItem.getEgg(EntityType.SHEEP));
    }
 }
 
