@@ -1,6 +1,7 @@
 package cofh.dyenamics;
 
 import cofh.dyenamics.client.render.block.DyenamicBedBlockEntityRenderer;
+import cofh.dyenamics.client.render.block.DyenamicShulkerBoxBlockEntityRenderer;
 import cofh.dyenamics.client.render.entity.DyenamicSheepRenderer;
 import cofh.dyenamics.core.init.BlockEntityInit;
 import cofh.dyenamics.core.init.BlockInit;
@@ -40,6 +41,7 @@ public class Dyenamics
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MOD_ID = "dyenamics";
     public static final Map<String, RenderMaterial> BED_MATERIAL_MAP = new HashMap<>();
+    public static final Map<String, RenderMaterial> SHULKER_MATERIAL_MAP = new HashMap<>();
 
     public Dyenamics() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -67,6 +69,7 @@ public class Dyenamics
         }
 
         ClientRegistry.bindTileEntityRenderer(BlockEntityInit.BED.get(), DyenamicBedBlockEntityRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(BlockEntityInit.SHULKER_BOX.get(), DyenamicShulkerBoxBlockEntityRenderer::new);
     }
 
     private void textureStitch(final TextureStitchEvent.Pre event) {
@@ -75,6 +78,12 @@ public class Dyenamics
                 ResourceLocation rLoc = new ResourceLocation(Dyenamics.MOD_ID, "entity/bed/" + color.getString());
                 event.addSprite(rLoc);
                 BED_MATERIAL_MAP.put(color.getString(), new RenderMaterial(Atlases.BED_ATLAS, rLoc));
+            }
+        } else if (event.getMap().getTextureLocation().equals(Atlases.SHULKER_BOX_ATLAS)) {
+            for (DyenamicDyeColor color: DyenamicDyeColor.dyenamicValues()) {
+                ResourceLocation rLoc = new ResourceLocation(Dyenamics.MOD_ID, "entity/shulker/" + color.getString());
+                event.addSprite(rLoc);
+                SHULKER_MATERIAL_MAP.put(color.getString(), new RenderMaterial(Atlases.SHULKER_BOX_ATLAS, rLoc));
             }
         }
     }
