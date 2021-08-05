@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "aquamarine_armor",
+    "ingredients": [
+        {
+            "item": "minecraft:leather_boots"
+        },
+        {
+            "item": "dyenamics:aquamarine_dye"
+        }
+    ],
+    "result": {
+        "type": "forge:nbt",
+        "item": "minecraft:leather_boots",
+        "nbt": {
+            "display": {
+                "color": 2915711
+            }
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "tag": "minecraft:beds"
+        },
+        {
+            "item": "dyenamics:peach_dye"
+        }
+    ],
+    "result": {
+        "item": "dyenamics:peach_bed"
+    }
+}

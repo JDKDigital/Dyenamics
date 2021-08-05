@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "mint_armor",
+    "ingredients": [
+        {
+            "item": "minecraft:leather_chestplate"
+        },
+        {
+            "item": "dyenamics:mint_dye"
+        }
+    ],
+    "result": {
+        "type": "forge:nbt",
+        "item": "minecraft:leather_chestplate",
+        "nbt": {
+            "display": {
+                "color": 9038008
+            }
+        }
+    }
+}

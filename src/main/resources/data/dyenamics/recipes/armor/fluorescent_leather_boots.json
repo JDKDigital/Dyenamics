@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "fluorescent_armor",
+    "ingredients": [
+        {
+            "item": "minecraft:leather_boots"
+        },
+        {
+            "item": "dyenamics:fluorescent_dye"
+        }
+    ],
+    "result": {
+        "type": "forge:nbt",
+        "item": "minecraft:leather_boots",
+        "nbt": {
+            "display": {
+                "color": 15657398
+            }
+        }
+    }
+}

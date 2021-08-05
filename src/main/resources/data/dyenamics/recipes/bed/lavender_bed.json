@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "tag": "minecraft:beds"
+        },
+        {
+            "item": "dyenamics:lavender_dye"
+        }
+    ],
+    "result": {
+        "item": "dyenamics:lavender_bed"
+    }
+}

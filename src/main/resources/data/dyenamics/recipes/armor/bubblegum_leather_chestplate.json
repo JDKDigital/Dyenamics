@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "bubblegum_armor",
+    "ingredients": [
+        {
+            "item": "minecraft:leather_chestplate"
+        },
+        {
+            "item": "dyenamics:bubblegum_dye"
+        }
+    ],
+    "result": {
+        "type": "forge:nbt",
+        "item": "minecraft:leather_chestplate",
+        "nbt": {
+            "display": {
+                "color": 16216518
+            }
+        }
+    }
+}

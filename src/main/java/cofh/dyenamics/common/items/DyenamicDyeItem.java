@@ -1,11 +1,8 @@
 package cofh.dyenamics.common.items;
 
-import com.google.common.collect.Maps;
-
 import cofh.dyenamics.common.entities.DyenamicSheepEntity;
 import cofh.dyenamics.core.util.DyenamicDyeColor;
-
-import java.util.Map;
+import com.google.common.collect.Maps;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,6 +10,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+
+import java.util.Map;
 
 public class DyenamicDyeItem extends Item {
    private static final Map<DyenamicDyeColor, DyenamicDyeItem> COLOR_DYE_ITEM_MAP = Maps.newEnumMap(DyenamicDyeColor.class);

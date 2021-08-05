@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "tag": "minecraft:beds"
+        },
+        {
+            "item": "dyenamics:aquamarine_dye"
+        }
+    ],
+    "result": {
+        "item": "dyenamics:aquamarine_bed"
+    }
+}

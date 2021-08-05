@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "peach_armor",
+    "ingredients": [
+        {
+            "item": "minecraft:leather_helmet"
+        },
+        {
+            "item": "dyenamics:peach_dye"
+        }
+    ],
+    "result": {
+        "type": "forge:nbt",
+        "item": "minecraft:leather_helmet",
+        "nbt": {
+            "display": {
+                "color": 12556403
+            }
+        }
+    }
+}

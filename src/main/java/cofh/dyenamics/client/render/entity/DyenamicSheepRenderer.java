@@ -2,10 +2,9 @@ package cofh.dyenamics.client.render.entity;
 
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.model.SheepModel;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.util.ResourceLocation;
-
-import net.minecraft.client.renderer.entity.model.SheepModel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 

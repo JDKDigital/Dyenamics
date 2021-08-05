@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "cherenkov_armor",
+    "ingredients": [
+        {
+            "item": "minecraft:leather_horse_armor"
+        },
+        {
+            "item": "dyenamics:cherenkov_dye"
+        }
+    ],
+    "result": {
+        "type": "forge:nbt",
+        "item": "minecraft:leather_horse_armor",
+        "nbt": {
+            "display": {
+                "color": 104655
+            }
+        }
+    }
+}

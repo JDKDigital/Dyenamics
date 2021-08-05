@@ -1,30 +1,25 @@
 package cofh.dyenamics.core.init;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Supplier;
-
 import cofh.dyenamics.Dyenamics;
-import cofh.dyenamics.common.blocks.DyenamicCarpetBlock;
-import cofh.dyenamics.common.blocks.DyenamicFlammableBlock;
-import cofh.dyenamics.common.blocks.DyenamicStainedGlassBlock;
-import cofh.dyenamics.common.blocks.DyenamicStainedGlassPane;
+import cofh.dyenamics.client.render.item.DyenamicBedItemStackRenderer;
+import cofh.dyenamics.common.blocks.*;
 import cofh.dyenamics.core.util.DyenamicDyeColor;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.ConcretePowderBlock;
-import net.minecraft.block.GlazedTerracottaBlock;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.state.properties.BedPart;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Supplier;
 
 public class BlockInit {
 
@@ -53,14 +48,21 @@ public class BlockInit {
 		registerBlockAndItem(colorName, "carpet", blocks, ItemGroup.DECORATIONS, () -> new DyenamicCarpetBlock(color, AbstractBlock.Properties.create(Material.CARPET, mapColor).hardnessAndResistance(0.1F).sound(SoundType.CLOTH).setLightLevel(state -> light)));
 		registerBlockAndItem(colorName, "stained_glass", blocks, ItemGroup.BUILDING_BLOCKS, () -> new DyenamicStainedGlassBlock(color, AbstractBlock.Properties.create(Material.GLASS, mapColor).hardnessAndResistance(0.3F).sound(SoundType.GLASS).notSolid().setAllowsSpawn((a, b, c, d) -> false).setOpaque((a, b, c) -> false).setSuffocates((a, b, c) -> false).setBlocksVision((a, b, c) -> false).setLightLevel(state -> light)));
 		registerBlockAndItem(colorName, "stained_glass_pane", blocks, ItemGroup.BUILDING_BLOCKS, () -> new DyenamicStainedGlassPane(color, AbstractBlock.Properties.create(Material.GLASS, mapColor).hardnessAndResistance(0.3F).sound(SoundType.GLASS).notSolid().setAllowsSpawn((a, b, c, d) -> false).setOpaque((a, b, c) -> false).setSuffocates((a, b, c) -> false).setBlocksVision((a, b, c) -> false).setLightLevel(state -> light)));
+		registerBlockAndItem(colorName, "bed", blocks, ItemGroup.DECORATIONS, () -> new DyenamicBedBlock(color, AbstractBlock.Properties.create(Material.WOOL, (state) -> {
+			return state.get(BedBlock.PART) == BedPart.FOOT ? mapColor : MaterialColor.WOOL;
+		}).sound(SoundType.WOOD).hardnessAndResistance(0.2F).notSolid()));
 	}
 
-	public synchronized static RegistryObject<Block> registerBlockAndItem(String color, String block, Map<String, RegistryObject<Block>> blockMap, ItemGroup group, Supplier<Block> supplier) {
-		String name = color + "_" + block;
-		RegistryObject<Block> blockRegistryObject = BLOCKS.register(name, supplier);
-		ItemInit.ITEMS.register(name, () -> new BlockItem(blockRegistryObject.get(), new Item.Properties().group(group)));
-		blockMap.put(block, blockRegistryObject);
-		return blockRegistryObject;
-	}
+	public synchronized static RegistryObject<Block> registerBlockAndItem(String color, String nameSuffix, Map<String, RegistryObject<Block>> blockMap, ItemGroup group, Supplier<Block> supplier) {
+		String name = color + "_" + nameSuffix;
+		RegistryObject<Block> block = BLOCKS.register(name, supplier);
 
+		if (name.endsWith("_bed")) {
+			ItemInit.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().group(group).setISTER(() -> DyenamicBedItemStackRenderer::new)));
+		} else {
+			ItemInit.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().group(group)));
+		}
+		blockMap.put(nameSuffix, block);
+		return block;
+	}
 }

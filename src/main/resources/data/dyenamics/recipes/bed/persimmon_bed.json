@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "tag": "minecraft:beds"
+        },
+        {
+            "item": "dyenamics:persimmon_dye"
+        }
+    ],
+    "result": {
+        "item": "dyenamics:persimmon_bed"
+    }
+}
