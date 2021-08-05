@@ -10,7 +10,7 @@
     }
   ],
   "result": {
-    "item": "dyenamics:lavender_dye",
+    "tag": "forge:dyes/lavender",
     "count": 2
   }
 }

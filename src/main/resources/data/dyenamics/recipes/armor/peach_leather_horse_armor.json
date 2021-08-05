@@ -6,7 +6,7 @@
             "item": "minecraft:leather_horse_armor"
         },
         {
-            "item": "dyenamics:peach_dye"
+            "tag": "forge:dyes/peach"
         }
     ],
     "result": {

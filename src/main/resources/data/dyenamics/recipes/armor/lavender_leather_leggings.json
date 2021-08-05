@@ -6,7 +6,7 @@
             "item": "minecraft:leather_leggings"
         },
         {
-            "item": "dyenamics:lavender_dye"
+            "tag": "forge:dyes/lavender"
         }
     ],
     "result": {

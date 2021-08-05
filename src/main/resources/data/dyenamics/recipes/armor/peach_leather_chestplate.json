@@ -6,7 +6,7 @@
             "item": "minecraft:leather_chestplate"
         },
         {
-            "item": "dyenamics:peach_dye"
+            "tag": "forge:dyes/peach"
         }
     ],
     "result": {

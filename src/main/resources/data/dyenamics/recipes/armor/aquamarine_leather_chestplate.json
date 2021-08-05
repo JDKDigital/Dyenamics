@@ -6,7 +6,7 @@
             "item": "minecraft:leather_chestplate"
         },
         {
-            "item": "dyenamics:aquamarine_dye"
+            "tag": "forge:dyes/aquamarine"
         }
     ],
     "result": {

@@ -3,7 +3,7 @@
     "group": "concrete_powder",
     "ingredients": [
         {
-            "item": "dyenamics:fluorescent_dye"
+            "tag": "forge:dyes/fluorescent"
         },
         {
             "item": "minecraft:sand"

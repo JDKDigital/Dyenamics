@@ -6,7 +6,7 @@
             "item": "minecraft:leather_chestplate"
         },
         {
-            "item": "dyenamics:bubblegum_dye"
+            "tag": "forge:dyes/bubblegum"
         }
     ],
     "result": {

@@ -13,7 +13,7 @@
     }
   ],
   "result": {
-    "item": "dyenamics:fluorescent_dye",
+    "tag": "forge:dyes/fluorescent",
     "count": 3
   }
 }

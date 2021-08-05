@@ -3,7 +3,7 @@
     "group": "wool",
     "ingredients": [
         {
-            "item": "dyenamics:maroon_dye"
+            "tag": "forge:dyes/maroon"
         },
         {
             "item": "minecraft:white_wool"

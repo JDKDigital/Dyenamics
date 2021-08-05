@@ -6,7 +6,7 @@
             "item": "minecraft:white_bed"
         },
         {
-            "item": "dyenamics:mint_dye"
+            "tag": "forge:dyes/mint"
         }
     ],
     "result": {

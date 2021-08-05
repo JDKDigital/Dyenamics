@@ -6,7 +6,7 @@
             "item": "minecraft:leather_horse_armor"
         },
         {
-            "item": "dyenamics:lavender_dye"
+            "tag": "forge:dyes/lavender"
         }
     ],
     "result": {

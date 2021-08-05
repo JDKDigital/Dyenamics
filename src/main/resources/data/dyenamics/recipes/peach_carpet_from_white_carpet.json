@@ -11,7 +11,7 @@
             "item": "minecraft:white_carpet"
         },
         "$": {
-            "item": "dyenamics:peach_dye"
+            "tag": "forge:dyes/peach"
         }
     },
     "result": {

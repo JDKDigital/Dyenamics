@@ -6,7 +6,7 @@
             "item": "minecraft:white_bed"
         },
         {
-            "item": "dyenamics:cherenkov_dye"
+            "tag": "forge:dyes/cherenkov"
         }
     ],
     "result": {

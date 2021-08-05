@@ -6,7 +6,7 @@
             "item": "minecraft:leather_boots"
         },
         {
-            "item": "dyenamics:aquamarine_dye"
+            "tag": "forge:dyes/aquamarine"
         }
     ],
     "result": {

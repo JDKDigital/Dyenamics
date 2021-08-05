@@ -6,7 +6,7 @@
             "item": "minecraft:leather_helmet"
         },
         {
-            "item": "dyenamics:aquamarine_dye"
+            "tag": "forge:dyes/aquamarine"
         }
     ],
     "result": {

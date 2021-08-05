@@ -6,7 +6,7 @@
             "item": "minecraft:leather_helmet"
         },
         {
-            "item": "dyenamics:lavender_dye"
+            "tag": "forge:dyes/lavender"
         }
     ],
     "result": {

@@ -6,7 +6,7 @@
             "item": "minecraft:leather_leggings"
         },
         {
-            "item": "dyenamics:cherenkov_dye"
+            "tag": "forge:dyes/cherenkov"
         }
     ],
     "result": {

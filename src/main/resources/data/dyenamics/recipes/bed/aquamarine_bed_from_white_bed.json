@@ -6,7 +6,7 @@
             "item": "minecraft:white_bed"
         },
         {
-            "item": "dyenamics:aquamarine_dye"
+            "tag": "forge:dyes/aquamarine"
         }
     ],
     "result": {

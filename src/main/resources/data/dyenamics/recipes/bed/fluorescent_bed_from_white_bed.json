@@ -6,7 +6,7 @@
             "item": "minecraft:white_bed"
         },
         {
-            "item": "dyenamics:fluorescent_dye"
+            "tag": "forge:dyes/fluorescent"
         }
     ],
     "result": {

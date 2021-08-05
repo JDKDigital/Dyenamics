@@ -6,7 +6,7 @@
             "item": "minecraft:leather_chestplate"
         },
         {
-            "item": "dyenamics:cherenkov_dye"
+            "tag": "forge:dyes/cherenkov"
         }
     ],
     "result": {

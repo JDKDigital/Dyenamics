@@ -11,7 +11,7 @@
             "item": "minecraft:glass"
         },
         "X": {
-            "item": "dyenamics:persimmon_dye"
+            "tag": "forge:dyes/persimmon"
         }
     },
     "result": {

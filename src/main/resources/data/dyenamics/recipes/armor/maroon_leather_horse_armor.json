@@ -6,7 +6,7 @@
             "item": "minecraft:leather_horse_armor"
         },
         {
-            "item": "dyenamics:maroon_dye"
+            "tag": "forge:dyes/maroon"
         }
     ],
     "result": {

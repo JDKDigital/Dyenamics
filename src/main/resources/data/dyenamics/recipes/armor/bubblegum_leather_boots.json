@@ -6,7 +6,7 @@
             "item": "minecraft:leather_boots"
         },
         {
-            "item": "dyenamics:bubblegum_dye"
+            "tag": "forge:dyes/bubblegum"
         }
     ],
     "result": {

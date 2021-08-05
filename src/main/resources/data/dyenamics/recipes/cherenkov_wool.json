@@ -3,7 +3,7 @@
     "group": "wool",
     "ingredients": [
         {
-            "item": "dyenamics:cherenkov_dye"
+            "tag": "forge:dyes/cherenkov"
         },
         {
             "item": "minecraft:white_wool"
