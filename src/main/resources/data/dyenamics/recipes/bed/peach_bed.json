@@ -1,13 +1,18 @@
 {
-    "type": "minecraft:crafting_shapeless",
-    "ingredients": [
-        {
-            "tag": "minecraft:beds"
-        },
-        {
-            "item": "dyenamics:peach_dye"
-        }
+    "type": "minecraft:crafting_shaped",
+    "group": "bed",
+    "pattern": [
+        "###",
+        "XXX"
     ],
+    "key": {
+        "#": {
+            "item": "dyenamics:peach_wool"
+        },
+        "X": {
+            "tag": "minecraft:planks"
+        }
+    },
     "result": {
         "item": "dyenamics:peach_bed"
     }
