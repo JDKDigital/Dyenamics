@@ -8,14 +8,18 @@ import cofh.dyenamics.core.init.BlockInit;
 import cofh.dyenamics.core.init.EntityInit;
 import cofh.dyenamics.core.init.ItemInit;
 import cofh.dyenamics.core.util.DyenamicDyeColor;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.model.RenderMaterial;
+import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -32,12 +36,6 @@ import java.util.Map;
 @Mod(Dyenamics.MOD_ID)
 public class Dyenamics
 {
-    static {
-        BlockInit.register();
-        ItemInit.register();
-        EntityInit.register();
-    }
-
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MOD_ID = "dyenamics";
     public static final Map<String, RenderMaterial> BED_MATERIAL_MAP = new HashMap<>();
@@ -49,6 +47,11 @@ public class Dyenamics
         bus.addListener(this::commonSetup);
         bus.addListener(this::clientSetup);
         bus.addListener(this::textureStitch);
+
+        BlockInit.register();
+        ItemInit.register();
+        EntityInit.register();
+
         BlockInit.BLOCKS.register(bus);
         ItemInit.ITEMS.register(bus);
         EntityInit.ENTITIES.register(bus);

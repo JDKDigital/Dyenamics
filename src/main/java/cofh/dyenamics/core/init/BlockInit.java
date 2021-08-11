@@ -16,6 +16,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.state.properties.BedPart;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ToolType;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -48,6 +49,7 @@ public class BlockInit {
 		final RegistryObject<Block> concrete = registerBlockAndItem(colorName, "concrete", blocks, ItemGroup.BUILDING_BLOCKS, () -> new Block(AbstractBlock.Properties.create(Material.ROCK, analogue).setRequiresTool().hardnessAndResistance(1.8F).setLightLevel(state -> light)));
 		registerBlockAndItem(colorName, "concrete_powder", blocks, ItemGroup.BUILDING_BLOCKS, () -> new ConcretePowderBlock(concrete.get(), AbstractBlock.Properties.create(Material.SAND, analogue).hardnessAndResistance(0.5F).sound(SoundType.SAND).harvestTool(ToolType.SHOVEL).setLightLevel(state -> light)));
 		registerBlockAndItem(colorName, "wool", blocks, ItemGroup.BUILDING_BLOCKS, () -> new DyenamicFlammableBlock(AbstractBlock.Properties.create(Material.WOOL, mapColor).hardnessAndResistance(0.8F).sound(SoundType.CLOTH).setLightLevel(state -> light)));
+		registerBlockAndItem(colorName, "rockwool", blocks, compatItemGroup("thermal", ItemGroup.BUILDING_BLOCKS), () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.SNOW).hardnessAndResistance(2.0F, 6.0F).sound(SoundType.CLOTH).setLightLevel(state -> light)));
 		registerBlockAndItem(colorName, "carpet", blocks, ItemGroup.DECORATIONS, () -> new DyenamicCarpetBlock(color, AbstractBlock.Properties.create(Material.CARPET, mapColor).hardnessAndResistance(0.1F).sound(SoundType.CLOTH).setLightLevel(state -> light)));
 		registerBlockAndItem(colorName, "stained_glass", blocks, ItemGroup.BUILDING_BLOCKS, () -> new DyenamicStainedGlassBlock(color, AbstractBlock.Properties.create(Material.GLASS, mapColor).hardnessAndResistance(0.3F).sound(SoundType.GLASS).notSolid().setAllowsSpawn((a, b, c, d) -> false).setOpaque((a, b, c) -> false).setSuffocates((a, b, c) -> false).setBlocksVision((a, b, c) -> false).setLightLevel(state -> light)));
 		registerBlockAndItem(colorName, "stained_glass_pane", blocks, ItemGroup.BUILDING_BLOCKS, () -> new DyenamicStainedGlassPane(color, AbstractBlock.Properties.create(Material.GLASS, mapColor).hardnessAndResistance(0.3F).sound(SoundType.GLASS).notSolid().setAllowsSpawn((a, b, c, d) -> false).setOpaque((a, b, c) -> false).setSuffocates((a, b, c) -> false).setBlocksVision((a, b, c) -> false).setLightLevel(state -> light)));
@@ -77,5 +79,12 @@ public class BlockInit {
 		}
 		blockMap.put(nameSuffix, block);
 		return block;
+	}
+
+	private static ItemGroup compatItemGroup(String modId, ItemGroup group) {
+		if (ModList.get().isLoaded(modId)) {
+			return group;
+		}
+		return null;
 	}
 }

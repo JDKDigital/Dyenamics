@@ -1,0 +1,14 @@
+{
+    "replace": false,
+    "values": [
+        "dyenamics:peach_rockwool",
+        "dyenamics:aquamarine_rockwool",
+        "dyenamics:fluorescent_rockwool",
+        "dyenamics:mint_rockwool",
+        "dyenamics:maroon_rockwool",
+        "dyenamics:bubblegum_rockwool",
+        "dyenamics:lavender_rockwool",
+        "dyenamics:persimmon_rockwool",
+        "dyenamics:cherenkov_rockwool"
+    ]
+}
