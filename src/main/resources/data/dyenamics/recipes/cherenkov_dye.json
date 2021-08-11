@@ -13,7 +13,7 @@
     }
   ],
   "result": {
-    "tag": "forge:dyes/cherenkov",
+    "item": "dyenamics:cherenkov_dye",
     "count": 3
   }
 }

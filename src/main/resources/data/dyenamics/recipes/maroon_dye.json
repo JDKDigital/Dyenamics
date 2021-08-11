@@ -10,7 +10,7 @@
     }
   ],
   "result": {
-    "tag": "forge:dyes/maroon",
+    "item": "dyenamics:maroon_dye",
     "count": 2
   }
 }
