@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "cherenkov_armor",
+    "ingredients": [
+        {
+            "item": "minecraft:leather_chestplate"
+        },
+        {
+            "tag": "forge:dyes/cherenkov"
+        }
+    ],
+    "result": {
+        "type": "forge:nbt",
+        "item": "minecraft:leather_chestplate",
+        "nbt": {
+            "display": {
+                "color": 104655
+            }
+        }
+    }
+}

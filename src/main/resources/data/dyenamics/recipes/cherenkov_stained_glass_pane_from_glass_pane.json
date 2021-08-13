@@ -11,7 +11,7 @@
             "item": "minecraft:glass_pane"
         },
         "$": {
-            "item": "dyenamics:cherenkov_dye"
+            "tag": "forge:dyes/cherenkov"
         }
     },
     "result": {

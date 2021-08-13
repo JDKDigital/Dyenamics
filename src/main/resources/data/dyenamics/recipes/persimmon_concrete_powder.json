@@ -3,7 +3,7 @@
     "group": "concrete_powder",
     "ingredients": [
         {
-            "item": "dyenamics:persimmon_dye"
+            "tag": "forge:dyes/persimmon"
         },
         {
             "item": "minecraft:sand"

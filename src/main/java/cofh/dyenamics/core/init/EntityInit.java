@@ -1,8 +1,5 @@
 package cofh.dyenamics.core.init;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import cofh.dyenamics.Dyenamics;
 import cofh.dyenamics.common.entities.DyenamicSheepEntity;
 import cofh.dyenamics.core.util.DyenamicDyeColor;
@@ -15,6 +12,9 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class EntityInit {
 	public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, Dyenamics.MOD_ID);

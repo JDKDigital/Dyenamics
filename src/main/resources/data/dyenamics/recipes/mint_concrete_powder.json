@@ -3,7 +3,7 @@
     "group": "concrete_powder",
     "ingredients": [
         {
-            "item": "dyenamics:mint_dye"
+            "tag": "forge:dyes/mint"
         },
         {
             "item": "minecraft:sand"

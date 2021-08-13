@@ -1,0 +1,14 @@
+{
+    "replace": false,
+    "values": [
+        "dyenamics:peach_bed",
+        "dyenamics:aquamarine_bed",
+        "dyenamics:fluorescent_bed",
+        "dyenamics:mint_bed",
+        "dyenamics:maroon_bed",
+        "dyenamics:bubblegum_bed",
+        "dyenamics:lavender_bed",
+        "dyenamics:persimmon_bed",
+        "dyenamics:cherenkov_bed"
+    ]
+}

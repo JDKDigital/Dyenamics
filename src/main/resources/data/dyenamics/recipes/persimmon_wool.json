@@ -3,7 +3,7 @@
     "group": "wool",
     "ingredients": [
         {
-            "item": "dyenamics:persimmon_dye"
+            "tag": "forge:dyes/persimmon"
         },
         {
             "item": "minecraft:white_wool"

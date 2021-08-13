@@ -11,7 +11,7 @@
             "item": "minecraft:glass_pane"
         },
         "$": {
-            "item": "dyenamics:aquamarine_dye"
+            "tag": "forge:dyes/aquamarine"
         }
     },
     "result": {

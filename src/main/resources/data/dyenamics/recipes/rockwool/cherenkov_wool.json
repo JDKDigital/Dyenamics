@@ -1,0 +1,25 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "rockwool",
+    "ingredients": [
+        {
+            "tag": "forge:dyes/cherenkov"
+        },
+        {
+            "item": "thermal:white_rockwool"
+        }
+    ],
+    "result": {
+        "item": "dyenamics:cherenkov_rockwool"
+    },
+    "conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "thermal"
+        },
+        {
+            "flag": "rockwool",
+            "type": "thermal:flag"
+        }
+    ]
+}

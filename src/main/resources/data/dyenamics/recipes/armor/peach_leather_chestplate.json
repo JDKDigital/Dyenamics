@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "peach_armor",
+    "ingredients": [
+        {
+            "item": "minecraft:leather_chestplate"
+        },
+        {
+            "tag": "forge:dyes/peach"
+        }
+    ],
+    "result": {
+        "type": "forge:nbt",
+        "item": "minecraft:leather_chestplate",
+        "nbt": {
+            "display": {
+                "color": 12556403
+            }
+        }
+    }
+}

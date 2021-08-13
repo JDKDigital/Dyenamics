@@ -3,7 +3,7 @@
     "group": "wool",
     "ingredients": [
         {
-            "item": "dyenamics:mint_dye"
+            "tag": "forge:dyes/mint"
         },
         {
             "item": "minecraft:white_wool"

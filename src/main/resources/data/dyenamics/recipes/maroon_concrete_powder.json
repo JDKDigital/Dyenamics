@@ -3,7 +3,7 @@
     "group": "concrete_powder",
     "ingredients": [
         {
-            "item": "dyenamics:maroon_dye"
+            "tag": "forge:dyes/maroon"
         },
         {
             "item": "minecraft:sand"

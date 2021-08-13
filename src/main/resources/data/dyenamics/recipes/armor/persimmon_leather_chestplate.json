@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "persimmon_armor",
+    "ingredients": [
+        {
+            "item": "minecraft:leather_chestplate"
+        },
+        {
+            "tag": "forge:dyes/persimmon"
+        }
+    ],
+    "result": {
+        "type": "forge:nbt",
+        "item": "minecraft:leather_chestplate",
+        "nbt": {
+            "display": {
+                "color": 13779225
+            }
+        }
+    }
+}

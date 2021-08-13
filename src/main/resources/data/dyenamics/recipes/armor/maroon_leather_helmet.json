@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "maroon_armor",
+    "ingredients": [
+        {
+            "item": "minecraft:leather_helmet"
+        },
+        {
+            "tag": "forge:dyes/maroon"
+        }
+    ],
+    "result": {
+        "type": "forge:nbt",
+        "item": "minecraft:leather_helmet",
+        "nbt": {
+            "display": {
+                "color": 9502720
+            }
+        }
+    }
+}

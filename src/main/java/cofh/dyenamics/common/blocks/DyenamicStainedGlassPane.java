@@ -1,7 +1,6 @@
 package cofh.dyenamics.common.blocks;
 
 import cofh.dyenamics.core.util.DyenamicDyeColor;
-import net.minecraft.block.AbstractGlassBlock;
 import net.minecraft.block.PaneBlock;
 
 

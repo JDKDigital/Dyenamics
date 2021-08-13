@@ -1,15 +1,9 @@
 package cofh.dyenamics.common.entities;
 
-import com.google.common.collect.Maps;
-
 import cofh.dyenamics.core.init.BlockInit;
 import cofh.dyenamics.core.init.EntityInit;
 import cofh.dyenamics.core.util.DyenamicDyeColor;
-
-import java.util.Arrays;
-import java.util.Map;
-import java.util.stream.Collectors;
-import javax.annotation.Nullable;
+import com.google.common.collect.Maps;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -20,19 +14,9 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.DyeItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.SpawnEggItem;
+import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.Util;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DifficultyInstance;
@@ -41,6 +25,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class DyenamicSheepEntity extends SheepEntity {
    protected static final Map<DyenamicDyeColor, IItemProvider> WOOL_BY_COLOR = Util.make(Maps.newEnumMap(DyenamicDyeColor.class), (p_203402_0_) -> {

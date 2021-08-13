@@ -11,7 +11,7 @@
             "item": "minecraft:white_carpet"
         },
         "$": {
-            "item": "dyenamics:bubblegum_dye"
+            "tag": "forge:dyes/bubblegum"
         }
     },
     "result": {

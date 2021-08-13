@@ -1,0 +1,14 @@
+{
+    "replace": false,
+    "values": [
+        "dyenamics:peach_dye",
+        "dyenamics:aquamarine_dye",
+        "dyenamics:fluorescent_dye",
+        "dyenamics:mint_dye",
+        "dyenamics:maroon_dye",
+        "dyenamics:bubblegum_dye",
+        "dyenamics:lavender_dye",
+        "dyenamics:persimmon_dye",
+        "dyenamics:cherenkov_dye"
+    ]
+}

@@ -3,7 +3,7 @@
     "group": "concrete_powder",
     "ingredients": [
         {
-            "item": "dyenamics:cherenkov_dye"
+            "tag": "forge:dyes/cherenkov"
         },
         {
             "item": "minecraft:sand"

@@ -1,8 +1,5 @@
 package cofh.dyenamics.core.init;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import cofh.dyenamics.Dyenamics;
 import cofh.dyenamics.common.items.DyenamicDyeItem;
 import cofh.dyenamics.core.util.DyenamicDyeColor;
@@ -11,6 +8,9 @@ import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ItemInit {
 

@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "group": "maroon_armor",
+    "ingredients": [
+        {
+            "item": "minecraft:leather_horse_armor"
+        },
+        {
+            "tag": "forge:dyes/maroon"
+        }
+    ],
+    "result": {
+        "type": "forge:nbt",
+        "item": "minecraft:leather_horse_armor",
+        "nbt": {
+            "display": {
+                "color": 9502720
+            }
+        }
+    }
+}
