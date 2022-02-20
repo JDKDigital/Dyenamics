@@ -8,18 +8,14 @@ import cofh.dyenamics.core.init.BlockInit;
 import cofh.dyenamics.core.init.EntityInit;
 import cofh.dyenamics.core.init.ItemInit;
 import cofh.dyenamics.core.util.DyenamicDyeColor;
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.model.RenderMaterial;
-import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -32,10 +28,9 @@ import org.apache.logging.log4j.Logger;
 import java.util.HashMap;
 import java.util.Map;
 
-// The value here should match an entry in the META-INF/mods.toml file
 @Mod(Dyenamics.MOD_ID)
-public class Dyenamics
-{
+public class Dyenamics {
+
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MOD_ID = "dyenamics";
     public static final Map<String, RenderMaterial> BED_MATERIAL_MAP = new HashMap<>();

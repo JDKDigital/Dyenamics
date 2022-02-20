@@ -16,6 +16,7 @@ import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.IPacket;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -25,6 +26,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -58,13 +60,6 @@ public class DyenamicSheepEntity extends SheepEntity {
    public DyenamicSheepEntity(EntityType<? extends DyenamicSheepEntity> type, World worldIn) {
       super(type, worldIn);
    }
-   
-   /*
-   public DyenamicSheepEntity(EntityType<? extends DyenamicSheepEntity> type, World worldIn, DyenamicDyeColor color) {
-	   super(type, worldIn);
-	   this.setFleeceColor(color);
-   }
-	*/
 
    @Override
    protected void registerGoals() {
@@ -86,12 +81,12 @@ public class DyenamicSheepEntity extends SheepEntity {
    public static SheepEntity convertToVanilla(DyenamicSheepEntity oldSheep, DyeColor color) {
 	   World world = oldSheep.world;
 	   if (!world.isRemote) {
+           oldSheep.remove();
 		   SheepEntity sheep = new SheepEntity(EntityType.SHEEP, world);
 		   sheep.setFleeceColor(color);
 		   sheep.copyLocationAndAnglesFrom(oldSheep);
 		   sheep.setChild(oldSheep.isChild());
 		   world.addEntity(sheep);
-		   oldSheep.remove();
 		   return sheep;
 	   }
 	   return null;
@@ -110,7 +105,6 @@ public class DyenamicSheepEntity extends SheepEntity {
 		   sheep.copyLocationAndAnglesFrom(oldSheep);
 		   sheep.setChild(oldSheep.isChild());
 		   world.addEntity(sheep);
-		   oldSheep.remove();
 		   return sheep;
 	   }
 	   return null;
@@ -157,7 +151,7 @@ public class DyenamicSheepEntity extends SheepEntity {
 
    @Override
    public void shear(SoundCategory category) {
-      this.world.playMovingSound((PlayerEntity)null, this, SoundEvents.ENTITY_SHEEP_SHEAR, category, 1.0F, 1.0F);
+      this.world.playMovingSound(null, this, SoundEvents.ENTITY_SHEEP_SHEAR, category, 1.0F, 1.0F);
       this.setSheared(true);
       int i = 1 + this.rand.nextInt(3);
       
@@ -180,7 +174,6 @@ public class DyenamicSheepEntity extends SheepEntity {
    @Override
    public void writeAdditional(CompoundNBT compound) {
       super.writeAdditional(compound);
-      compound.putBoolean("Sheared", this.getSheared());
       compound.putByte("Color", (byte)this.getDyenamicFleeceColor().getId()); 
    }
 
@@ -190,9 +183,13 @@ public class DyenamicSheepEntity extends SheepEntity {
    @Override
    public void readAdditional(CompoundNBT compound) {
       super.readAdditional(compound);
-      this.setSheared(compound.getBoolean("Sheared"));
       this.setFleeceColor(DyenamicDyeColor.byId(compound.getByte("Color"))); 
    }
+
+    @Override
+    public IPacket<?> createSpawnPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
+    }
    
    public DyenamicDyeColor getDyenamicFleeceColor() {
       return DyenamicDyeColor.byId(this.dataManager.get(DYE_COLOR) & 127); 
@@ -203,8 +200,8 @@ public class DyenamicSheepEntity extends SheepEntity {
     */
    @Override
    public void setFleeceColor(DyeColor color) {
-	      byte b0 = this.dataManager.get(DYE_COLOR);
-	      this.dataManager.set(DYE_COLOR, (byte)(b0 & -128 | color.getId() & 15));
+      byte b0 = this.dataManager.get(DYE_COLOR);
+      this.dataManager.set(DYE_COLOR, (byte)(b0 & -128 | color.getId() & 15));
    }
    
    public void setFleeceColor(DyenamicDyeColor color) {
@@ -283,15 +280,15 @@ public class DyenamicSheepEntity extends SheepEntity {
     * Attempts to mix both parent sheep to come up with a mixed dye color.
     */
    protected DyenamicDyeColor getDyeColorMixFromParents(SheepEntity father, DyenamicSheepEntity mother) {
-	   return this.world.rand.nextBoolean() ? DyenamicDyeColor.byId(father.getFleeceColor().getId()) : ((DyenamicSheepEntity)mother).getDyenamicFleeceColor(); 
+	   return this.world.rand.nextBoolean() ? DyenamicDyeColor.byId(father.getFleeceColor().getId()) : mother.getDyenamicFleeceColor();
    }
    
    protected DyenamicDyeColor getDyeColorMixFromParents(DyenamicSheepEntity mother, SheepEntity father) {
-	   return this.world.rand.nextBoolean() ? DyenamicDyeColor.byId(father.getFleeceColor().getId()) : ((DyenamicSheepEntity)mother).getDyenamicFleeceColor(); 
+	   return this.world.rand.nextBoolean() ? DyenamicDyeColor.byId(father.getFleeceColor().getId()) : mother.getDyenamicFleeceColor();
    }
    
    protected DyenamicDyeColor getDyeColorMixFromParents(DyenamicSheepEntity father, DyenamicSheepEntity mother) {
-	   return this.world.rand.nextBoolean() ? ((DyenamicSheepEntity)father).getDyenamicFleeceColor() : ((DyenamicSheepEntity)mother).getDyenamicFleeceColor();
+	   return this.world.rand.nextBoolean() ? father.getDyenamicFleeceColor() : mother.getDyenamicFleeceColor();
    }
 
    @javax.annotation.Nonnull
