@@ -9,9 +9,8 @@ import net.minecraft.world.IWorldReader;
 
 import javax.annotation.Nullable;
 
+public class DyenamicStainedGlassBlock extends AbstractGlassBlock {
 
-public class DyenamicStainedGlassBlock extends AbstractGlassBlock
-{
     private final DyenamicDyeColor color;
 
     public DyenamicStainedGlassBlock(DyenamicDyeColor colorIn, AbstractBlock.Properties properties) {

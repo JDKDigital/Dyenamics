@@ -10,8 +10,8 @@ import net.minecraft.tileentity.TileEntityType;
 
 import javax.annotation.Nonnull;
 
-public class DyenamicShulkerBoxBlockEntity extends ShulkerBoxTileEntity
-{
+public class DyenamicShulkerBoxBlockEntity extends ShulkerBoxTileEntity {
+
     private DyenamicDyeColor color;
 
     public DyenamicShulkerBoxBlockEntity() {

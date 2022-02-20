@@ -32,15 +32,13 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class DyenamicSheepEntity extends SheepEntity {
-   protected static final Map<DyenamicDyeColor, IItemProvider> WOOL_BY_COLOR = Util.make(Maps.newEnumMap(DyenamicDyeColor.class), (p_203402_0_) -> {
+   protected static final Map<DyenamicDyeColor, IItemProvider> WOOL_BY_COLOR = Util.make(Maps.newEnumMap(DyenamicDyeColor.class), (map) -> {
 	   for (DyenamicDyeColor color : DyenamicDyeColor.dyenamicValues()) {
-		   p_203402_0_.put(color, BlockInit.DYED_BLOCKS.get(color.getString()).get("wool").get());
+		   map.put(color, BlockInit.DYED_BLOCKS.get(color.getString()).get("wool").get());
 	   }
    });
    /** Map from EnumDyenamicDyeColor to RGB values for passage to GlStateManager.color() */
-   protected static final Map<DyenamicDyeColor, float[]> DYE_TO_RGB = Maps.newEnumMap(Arrays.stream(DyenamicDyeColor.values()).collect(Collectors.toMap((DyenamicDyeColor color) -> {
-      return color;
-   }, DyenamicSheepEntity::createSheepColor)));
+   protected static final Map<DyenamicDyeColor, float[]> DYE_TO_RGB = Maps.newEnumMap(Arrays.stream(DyenamicDyeColor.values()).collect(Collectors.toMap((DyenamicDyeColor color) -> color, DyenamicSheepEntity::createSheepColor)));
 
    protected static float[] createSheepColor(DyenamicDyeColor dyeColorIn) {
 	   if (dyeColorIn == DyenamicDyeColor.WHITE) {

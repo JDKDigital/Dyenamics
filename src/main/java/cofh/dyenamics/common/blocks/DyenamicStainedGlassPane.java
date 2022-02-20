@@ -5,6 +5,7 @@ import net.minecraft.block.PaneBlock;
 
 
 public class DyenamicStainedGlassPane extends PaneBlock {
+
     private final DyenamicDyeColor color;
 
     public DyenamicStainedGlassPane(DyenamicDyeColor colorIn, Properties properties) {

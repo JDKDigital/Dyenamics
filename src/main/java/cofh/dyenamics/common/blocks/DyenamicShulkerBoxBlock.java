@@ -7,8 +7,8 @@ import net.minecraft.item.DyeColor;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;
 
-public class DyenamicShulkerBoxBlock extends ShulkerBoxBlock
-{
+public class DyenamicShulkerBoxBlock extends ShulkerBoxBlock {
+
     private final DyenamicDyeColor color;
 
     public DyenamicShulkerBoxBlock(DyenamicDyeColor colorIn, Properties properties) {

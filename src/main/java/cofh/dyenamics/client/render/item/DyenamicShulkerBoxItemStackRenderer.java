@@ -14,8 +14,8 @@ import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nonnull;
 
-public class DyenamicShulkerBoxItemStackRenderer extends ItemStackTileEntityRenderer
-{
+public class DyenamicShulkerBoxItemStackRenderer extends ItemStackTileEntityRenderer {
+
     DyenamicShulkerBoxBlockEntity blockEntity = null;
 
     @Override

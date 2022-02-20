@@ -15,8 +15,7 @@ import java.util.Comparator;
 import java.util.stream.Collectors;
 
 
-public enum DyenamicDyeColor implements IStringSerializable
-{
+public enum DyenamicDyeColor implements IStringSerializable {
     //Vanilla Colors
     WHITE(0, "white", 16383998, DyeColor.WHITE, MaterialColor.SNOW, 15790320, 16777215, 0),
     ORANGE(1, "orange", 16351261, DyeColor.ORANGE, MaterialColor.ADOBE, 15435844, 16738335, 0),
@@ -46,15 +45,9 @@ public enum DyenamicDyeColor implements IStringSerializable
     PERSIMMON(23, "persimmon", 13779225, DyeColor.ORANGE, MaterialColor.ORANGE_TERRACOTTA, 13779225, 12203795, 0),
     CHERENKOV(24, "cherenkov", 104655, DyeColor.LIGHT_BLUE, MaterialColor.LIGHT_BLUE, 104655, 35002, 8);
 
-    private static final DyenamicDyeColor[] VALUES = Arrays.stream(values()).sorted(Comparator.comparingInt(DyenamicDyeColor::getId)).toArray((colorId) -> {
-        return new DyenamicDyeColor[colorId];
-    });
+    private static final DyenamicDyeColor[] VALUES = Arrays.stream(values()).sorted(Comparator.comparingInt(DyenamicDyeColor::getId)).toArray(DyenamicDyeColor[]::new);
 
-    private static final Int2ObjectOpenHashMap<DyenamicDyeColor> BY_FIREWORK_COLOR = new Int2ObjectOpenHashMap<>(Arrays.stream(values()).collect(Collectors.toMap((color) -> {
-        return color.fireworkColor;
-    }, (color) -> {
-        return color;
-    })));
+    private static final Int2ObjectOpenHashMap<DyenamicDyeColor> BY_FIREWORK_COLOR = new Int2ObjectOpenHashMap<>(Arrays.stream(values()).collect(Collectors.toMap((color) -> color.fireworkColor, (color) -> color)));
 
     private final int id;
     private final String translationKey;
@@ -78,7 +71,7 @@ public enum DyenamicDyeColor implements IStringSerializable
         this.lightValue = lightValueIn;
         int i = (colorValueIn & 16711680) >> 16;
         int j = (colorValueIn & '\uff00') >> 8;
-        int k = (colorValueIn & 255) >> 0;
+        int k = colorValueIn & 255;
         //this.swappedColorValue = k << 16 | j << 8 | i << 0;
         this.tag = net.minecraft.tags.ItemTags.createOptional(new net.minecraft.util.ResourceLocation("forge", "dyes/" + translationKeyIn));
         this.colorComponentValues = new float[]{(float) i / 255.0F, (float) j / 255.0F, (float) k / 255.0F};

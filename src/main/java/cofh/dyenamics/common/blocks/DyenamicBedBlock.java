@@ -7,8 +7,8 @@ import net.minecraft.item.DyeColor;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;
 
-public class DyenamicBedBlock extends BedBlock
-{
+public class DyenamicBedBlock extends BedBlock {
+
     private final DyenamicDyeColor color;
 
     public DyenamicBedBlock(DyenamicDyeColor colorIn, Properties properties) {

@@ -6,8 +6,8 @@ import cofh.dyenamics.core.util.DyenamicDyeColor;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 
-public class DyenamicBedBlockEntity extends TileEntity
-{
+public class DyenamicBedBlockEntity extends TileEntity {
+
     private DyenamicDyeColor color;
 
     public DyenamicBedBlockEntity() {

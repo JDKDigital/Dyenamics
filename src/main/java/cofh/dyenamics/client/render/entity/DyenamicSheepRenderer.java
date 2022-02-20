@@ -1,5 +1,6 @@
 package cofh.dyenamics.client.render.entity;
 
+import cofh.dyenamics.common.entities.DyenamicSheepEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.SheepModel;
@@ -9,7 +10,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class DyenamicSheepRenderer extends MobRenderer<SheepEntity, SheepModel<SheepEntity>> {
+public class DyenamicSheepRenderer extends MobRenderer<DyenamicSheepEntity, SheepModel<DyenamicSheepEntity>> {
    private static final ResourceLocation SHEARED_SHEEP_TEXTURES = new ResourceLocation("textures/entity/sheep/sheep.png");
 
    public DyenamicSheepRenderer(EntityRendererManager renderManagerIn) {
@@ -20,7 +21,7 @@ public class DyenamicSheepRenderer extends MobRenderer<SheepEntity, SheepModel<S
    /**
     * Returns the location of an entity's texture.
     */
-   public ResourceLocation getEntityTexture(SheepEntity entity) {
+   public ResourceLocation getEntityTexture(DyenamicSheepEntity sheep) {
       return SHEARED_SHEEP_TEXTURES;
    }
 }

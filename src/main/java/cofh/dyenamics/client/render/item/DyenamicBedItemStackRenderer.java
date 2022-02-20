@@ -14,8 +14,8 @@ import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nonnull;
 
-public class DyenamicBedItemStackRenderer extends ItemStackTileEntityRenderer
-{
+public class DyenamicBedItemStackRenderer extends ItemStackTileEntityRenderer {
+
     DyenamicBedBlockEntity blockEntity = null;
 
     @Override
