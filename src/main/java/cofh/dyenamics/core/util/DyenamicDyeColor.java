@@ -168,16 +168,21 @@ public enum DyenamicDyeColor implements IStringSerializable {
 
     @Nullable
     public static DyenamicDyeColor getColor(ItemStack stack) {
-        if (stack.getItem() instanceof DyenamicDyeItem) {
-            return ((DyenamicDyeItem) stack.getItem()).getDyeColor();
-        }
 
+        return getColor(stack.getItem());
+    }
+
+    @Nullable
+    public static DyenamicDyeColor getColor(Item item) {
+
+        if (item instanceof DyenamicDyeItem) {
+            return ((DyenamicDyeItem) item).getDyeColor();
+        }
         for (DyenamicDyeColor color : VALUES) {
-            if (stack.getItem().isIn(color.getTag())) {
+            if (item.isIn(color.getTag())) {
                 return color;
             }
         }
-
         return null;
     }
 
