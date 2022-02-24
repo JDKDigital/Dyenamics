@@ -53,7 +53,7 @@ public class BlockInit {
 		registerBlockAndItem(colorName, "carpet", blocks, ItemGroup.DECORATIONS, () -> new DyenamicCarpetBlock(color, AbstractBlock.Properties.create(Material.CARPET, mapColor).hardnessAndResistance(0.1F).sound(SoundType.CLOTH).setLightLevel(state -> light)));
 		registerBlockAndItem(colorName, "stained_glass", blocks, ItemGroup.BUILDING_BLOCKS, () -> new DyenamicStainedGlassBlock(color, AbstractBlock.Properties.create(Material.GLASS, mapColor).hardnessAndResistance(0.3F).sound(SoundType.GLASS).notSolid().setAllowsSpawn((a, b, c, d) -> false).setOpaque((a, b, c) -> false).setSuffocates((a, b, c) -> false).setBlocksVision((a, b, c) -> false).setLightLevel(state -> light)));
 		registerBlockAndItem(colorName, "stained_glass_pane", blocks, ItemGroup.BUILDING_BLOCKS, () -> new DyenamicStainedGlassPane(color, AbstractBlock.Properties.create(Material.GLASS, mapColor).hardnessAndResistance(0.3F).sound(SoundType.GLASS).notSolid().setAllowsSpawn((a, b, c, d) -> false).setOpaque((a, b, c) -> false).setSuffocates((a, b, c) -> false).setBlocksVision((a, b, c) -> false).setLightLevel(state -> light)));
-		registerBlockAndItem(colorName, "bed", blocks, ItemGroup.DECORATIONS, () -> new DyenamicBedBlock(color, AbstractBlock.Properties.create(Material.WOOL, (state) -> state.get(BedBlock.PART) == BedPart.FOOT ? mapColor : MaterialColor.WOOL).sound(SoundType.WOOD).hardnessAndResistance(0.2F).notSolid()));
+		registerBedAndItem(colorName, "bed", blocks, ItemGroup.DECORATIONS, () -> new DyenamicBedBlock(color, AbstractBlock.Properties.create(Material.WOOL, (state) -> state.get(BedBlock.PART) == BedPart.FOOT ? mapColor : MaterialColor.WOOL).sound(SoundType.WOOD).hardnessAndResistance(0.2F).notSolid().setLightLevel(state -> light)));
 
 		AbstractBlock.IPositionPredicate shulkerPositionPredicate = (state, reader, pos) -> {
 			TileEntity tileentity = reader.getTileEntity(pos);
@@ -63,20 +63,29 @@ public class BlockInit {
 			}
 			return true;
 		};
-		registerBlockAndItem(colorName, "shulker_box", blocks, ItemGroup.DECORATIONS, () -> new DyenamicShulkerBoxBlock(color, AbstractBlock.Properties.create(Material.SHULKER, mapColor).hardnessAndResistance(2.0F).variableOpacity().notSolid().setSuffocates(shulkerPositionPredicate).setBlocksVision(shulkerPositionPredicate)));
+		registerShulkerBoxAndItem(colorName, "shulker_box", blocks, ItemGroup.DECORATIONS, () -> new DyenamicShulkerBoxBlock(color, AbstractBlock.Properties.create(Material.SHULKER, mapColor).hardnessAndResistance(2.0F).variableOpacity().notSolid().setSuffocates(shulkerPositionPredicate).setBlocksVision(shulkerPositionPredicate).harvestTool(ToolType.PICKAXE).setLightLevel(state -> light)));
+	}
+
+	public synchronized static RegistryObject<Block> registerBedAndItem(String color, String nameSuffix, Map<String, RegistryObject<Block>> blockMap, ItemGroup group, Supplier<Block> supplier) {
+
+		return registerBlockAndItem(color, nameSuffix, blockMap, supplier, new Item.Properties().group(group).setISTER(() -> DyenamicBedItemStackRenderer::new).maxStackSize(1));
+	}
+
+	public synchronized static RegistryObject<Block> registerShulkerBoxAndItem(String color, String nameSuffix, Map<String, RegistryObject<Block>> blockMap, ItemGroup group, Supplier<Block> supplier) {
+
+		return registerBlockAndItem(color, nameSuffix, blockMap, supplier, new Item.Properties().group(group).setISTER(() -> DyenamicShulkerBoxItemStackRenderer::new).maxStackSize(1));
 	}
 
 	public synchronized static RegistryObject<Block> registerBlockAndItem(String color, String nameSuffix, Map<String, RegistryObject<Block>> blockMap, ItemGroup group, Supplier<Block> supplier) {
+
+		return registerBlockAndItem(color, nameSuffix, blockMap, supplier, new Item.Properties().group(group));
+	}
+
+	public synchronized static RegistryObject<Block> registerBlockAndItem(String color, String nameSuffix, Map<String, RegistryObject<Block>> blockMap, Supplier<Block> supplier, Item.Properties itemProperties) {
+
 		String name = color + "_" + nameSuffix;
 		RegistryObject<Block> block = BLOCKS.register(name, supplier);
-
-		if (name.endsWith("_bed")) {
-			ItemInit.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().group(group).setISTER(() -> DyenamicBedItemStackRenderer::new)));
-		} else if (name.endsWith("_shulker_box")) {
-			ItemInit.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().group(group).setISTER(() -> DyenamicShulkerBoxItemStackRenderer::new)));
-		} else {
-			ItemInit.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().group(group)));
-		}
+		ItemInit.ITEMS.register(name, () -> new BlockItem(block.get(), itemProperties));
 		blockMap.put(nameSuffix, block);
 		return block;
 	}

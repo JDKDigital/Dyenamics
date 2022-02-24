@@ -3,10 +3,7 @@ package cofh.dyenamics;
 import cofh.dyenamics.client.render.block.DyenamicBedBlockEntityRenderer;
 import cofh.dyenamics.client.render.block.DyenamicShulkerBoxBlockEntityRenderer;
 import cofh.dyenamics.client.render.entity.DyenamicSheepRenderer;
-import cofh.dyenamics.core.init.BlockEntityInit;
-import cofh.dyenamics.core.init.BlockInit;
-import cofh.dyenamics.core.init.EntityInit;
-import cofh.dyenamics.core.init.ItemInit;
+import cofh.dyenamics.core.init.*;
 import cofh.dyenamics.core.util.DyenamicDyeColor;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderType;
@@ -51,6 +48,7 @@ public class Dyenamics {
         ItemInit.ITEMS.register(bus);
         EntityInit.ENTITIES.register(bus);
         BlockEntityInit.BLOCK_ENTITY_TYPES.register(bus);
+        RecipeSerializerInit.RECIPE_SERIALIZERS.register(bus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
