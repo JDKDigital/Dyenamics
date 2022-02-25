@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "dyenamics:peach_shulker_box",
+    "dyenamics:aquamarine_shulker_box",
+    "dyenamics:fluorescent_shulker_box",
+    "dyenamics:mint_shulker_box",
+    "dyenamics:maroon_shulker_box",
+    "dyenamics:bubblegum_shulker_box",
+    "dyenamics:lavender_shulker_box",
+    "dyenamics:persimmon_shulker_box",
+    "dyenamics:cherenkov_shulker_box"
+  ]
+}

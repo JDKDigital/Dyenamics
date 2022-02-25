@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "dyenamics:peach_stained_glass_pane",
+    "dyenamics:aquamarine_stained_glass_pane",
+    "dyenamics:fluorescent_stained_glass_pane",
+    "dyenamics:mint_stained_glass_pane",
+    "dyenamics:maroon_stained_glass_pane",
+    "dyenamics:bubblegum_stained_glass_pane",
+    "dyenamics:lavender_stained_glass_pane",
+    "dyenamics:persimmon_stained_glass_pane",
+    "dyenamics:cherenkov_stained_glass_pane"
+  ]
+}
