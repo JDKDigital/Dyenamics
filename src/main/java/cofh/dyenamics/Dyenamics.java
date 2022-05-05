@@ -5,12 +5,9 @@ import cofh.dyenamics.client.render.block.DyenamicShulkerBoxBlockEntityRenderer;
 import cofh.dyenamics.client.render.entity.DyenamicSheepRenderer;
 import cofh.dyenamics.core.init.*;
 import cofh.dyenamics.core.util.DyenamicDyeColor;
-import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.model.RenderMaterial;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -38,7 +35,6 @@ public class Dyenamics {
         // Register the setup method for modloading
         bus.addListener(this::commonSetup);
         bus.addListener(this::clientSetup);
-        bus.addListener(this::textureStitch);
 
         BlockInit.register();
         ItemInit.register();
@@ -68,19 +64,4 @@ public class Dyenamics {
         ClientRegistry.bindTileEntityRenderer(BlockEntityInit.SHULKER_BOX.get(), DyenamicShulkerBoxBlockEntityRenderer::new);
     }
 
-    private void textureStitch(final TextureStitchEvent.Pre event) {
-        if (event.getMap().getTextureLocation().equals(Atlases.BED_ATLAS)) {
-            for (DyenamicDyeColor color: DyenamicDyeColor.dyenamicValues()) {
-                ResourceLocation rLoc = new ResourceLocation(Dyenamics.MOD_ID, "entity/bed/" + color.getString());
-                event.addSprite(rLoc);
-                BED_MATERIAL_MAP.put(color.getString(), new RenderMaterial(Atlases.BED_ATLAS, rLoc));
-            }
-        } else if (event.getMap().getTextureLocation().equals(Atlases.SHULKER_BOX_ATLAS)) {
-            for (DyenamicDyeColor color: DyenamicDyeColor.dyenamicValues()) {
-                ResourceLocation rLoc = new ResourceLocation(Dyenamics.MOD_ID, "entity/shulker/" + color.getString());
-                event.addSprite(rLoc);
-                SHULKER_MATERIAL_MAP.put(color.getString(), new RenderMaterial(Atlases.SHULKER_BOX_ATLAS, rLoc));
-            }
-        }
-    }
 }
