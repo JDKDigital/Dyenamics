@@ -5,12 +5,12 @@ license = "CoFH - Don't Be A Jerk (Learn, Don't Steal)"
 
 [[mods]]
 modId = "dyenamics"
-version = "1.1.0"
+version = "1.2.1"
 displayName = "Dyenamics"
 displayURL = "https://teamcofh.com/"
 logoFile = "logo.png"
 credits = "Team Cough on Five Horses"
-authors = "Hekera, Reda"
+authors = "Hekera, LobsterJonn, Reda, Cait"
 description = '''
 Minecraft gets dyenamic!
 Contains various pigment options for colorful gameplay!
