@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "dyenamics:block/persimmon_candle_cake"
+    },
+    "lit=true": {
+      "model": "dyenamics:block/persimmon_candle_cake_lit"
+    }
+  }
+}

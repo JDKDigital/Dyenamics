@@ -1,21 +1,27 @@
 package cofh.dyenamics.common.blocks;
 
 import cofh.dyenamics.core.util.DyenamicDyeColor;
-import net.minecraft.block.PaneBlock;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.IronBarsBlock;
+import net.minecraft.world.level.block.state.BlockState;
 
-
-public class DyenamicStainedGlassPane extends PaneBlock {
-
+public class DyenamicStainedGlassPane extends IronBarsBlock
+{
     private final DyenamicDyeColor color;
 
     public DyenamicStainedGlassPane(DyenamicDyeColor colorIn, Properties properties) {
         super(properties);
         this.color = colorIn;
-        this.setDefaultState(this.stateContainer.getBaseState().with(NORTH, Boolean.valueOf(false)).with(EAST, Boolean.valueOf(false)).with(SOUTH, Boolean.valueOf(false)).with(WEST, Boolean.valueOf(false)).with(WATERLOGGED, Boolean.valueOf(false)));
-
+        this.registerDefaultState(this.stateDefinition.any().setValue(NORTH, Boolean.FALSE).setValue(EAST, Boolean.FALSE).setValue(SOUTH, Boolean.FALSE).setValue(WEST, Boolean.FALSE).setValue(WATERLOGGED, Boolean.FALSE));
     }
 
     public DyenamicDyeColor getColor() {
         return this.color;
+    }
+
+    @Override
+    public float[] getBeaconColorMultiplier(BlockState state, LevelReader level, BlockPos pos, BlockPos beaconPos) {
+        return getColor().getColorComponentValues();
     }
 }

@@ -3,40 +3,41 @@ package cofh.dyenamics.common.blockentity;
 import cofh.dyenamics.common.blocks.DyenamicShulkerBoxBlock;
 import cofh.dyenamics.core.init.BlockEntityInit;
 import cofh.dyenamics.core.util.DyenamicDyeColor;
-import net.minecraft.item.DyeColor;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.ShulkerBoxTileEntity;
-import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nonnull;
 
-public class DyenamicShulkerBoxBlockEntity extends ShulkerBoxTileEntity {
-
+public class DyenamicShulkerBoxBlockEntity extends ShulkerBoxBlockEntity
+{
     private DyenamicDyeColor color;
 
-    public DyenamicShulkerBoxBlockEntity() {
-        super(DyeColor.PURPLE);
+    public DyenamicShulkerBoxBlockEntity(BlockPos blockPos, BlockState blockState) {
+        super(DyeColor.PURPLE, blockPos, blockState);
     }
 
-    public DyenamicShulkerBoxBlockEntity(DyenamicDyeColor colorIn) {
-        this();
+    public DyenamicShulkerBoxBlockEntity(DyenamicDyeColor colorIn, BlockPos blockPos, BlockState blockState) {
+        this(blockPos, blockState);
         this.setColor(colorIn);
     }
 
     @Nonnull
     @Override
-    public TileEntityType<?> getType() {
+    public BlockEntityType<?> getType() {
         return BlockEntityInit.SHULKER_BOX.get();
     }
 
-    @Override
-    public SUpdateTileEntityPacket getUpdatePacket() {
-        return new SUpdateTileEntityPacket(this.pos, 11, this.getUpdateTag());
-    }
+//    @Override
+//    public SUpdateTileEntityPacket getUpdatePacket() {
+//        return new SUpdateTileEntityPacket(this.pos, 11, this.getUpdateTag());
+//    }
 
     public DyenamicDyeColor getDyenamicColor() {
         if (this.color == null) {
-            this.color = ((DyenamicShulkerBoxBlock)this.getBlockState().getBlock()).getDyenamicColor();
+            this.color = ((DyenamicShulkerBoxBlock) this.getBlockState().getBlock()).getDyenamicColor();
         }
 
         return this.color;

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_three_candles",
+  "textures": {
+    "all": "dyenamics:block/fluorescent_candle",
+    "particle": "dyenamics:block/fluorescent_candle"
+  }
+}

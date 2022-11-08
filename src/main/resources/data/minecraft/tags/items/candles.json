@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "dyenamics:peach_candle",
+    "dyenamics:aquamarine_candle",
+    "dyenamics:fluorescent_candle",
+    "dyenamics:mint_candle",
+    "dyenamics:maroon_candle",
+    "dyenamics:bubblegum_candle",
+    "dyenamics:lavender_candle",
+    "dyenamics:persimmon_candle",
+    "dyenamics:cherenkov_candle"
+  ]
+}

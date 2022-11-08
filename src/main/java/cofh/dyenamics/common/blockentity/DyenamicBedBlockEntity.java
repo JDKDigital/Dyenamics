@@ -3,30 +3,31 @@ package cofh.dyenamics.common.blockentity;
 import cofh.dyenamics.common.blocks.DyenamicBedBlock;
 import cofh.dyenamics.core.init.BlockEntityInit;
 import cofh.dyenamics.core.util.DyenamicDyeColor;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
-public class DyenamicBedBlockEntity extends TileEntity {
-
+public class DyenamicBedBlockEntity extends BlockEntity
+{
     private DyenamicDyeColor color;
 
-    public DyenamicBedBlockEntity() {
-        super(BlockEntityInit.BED.get());
+    public DyenamicBedBlockEntity(BlockPos blockPos, BlockState blockState) {
+        super(BlockEntityInit.BED.get(), blockPos, blockState);
     }
 
-    public DyenamicBedBlockEntity(DyenamicDyeColor colorIn) {
-        this();
+    public DyenamicBedBlockEntity(DyenamicDyeColor colorIn, BlockPos blockPos, BlockState blockState) {
+        this(blockPos, blockState);
         this.setColor(colorIn);
     }
 
-    @Override
-    public SUpdateTileEntityPacket getUpdatePacket() {
-        return new SUpdateTileEntityPacket(this.pos, 11, this.getUpdateTag());
-    }
+//    @Override
+//    public SUpdateTileEntityPacket getUpdatePacket() {
+//        return new SUpdateTileEntityPacket(this.pos, 11, this.getUpdateTag());
+//    }
 
     public DyenamicDyeColor getColor() {
         if (this.color == null) {
-            this.color = ((DyenamicBedBlock)this.getBlockState().getBlock()).getDyenamicColor();
+            this.color = ((DyenamicBedBlock) this.getBlockState().getBlock()).getDyenamicColor();
         }
 
         return this.color;

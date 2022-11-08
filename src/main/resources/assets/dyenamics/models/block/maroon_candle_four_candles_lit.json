@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_four_candles",
+  "textures": {
+    "all": "dyenamics:block/maroon_candle_lit",
+    "particle": "dyenamics:block/maroon_candle_lit"
+  }
+}

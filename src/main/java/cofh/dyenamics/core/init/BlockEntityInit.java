@@ -4,40 +4,40 @@ import cofh.dyenamics.Dyenamics;
 import cofh.dyenamics.common.blockentity.DyenamicBedBlockEntity;
 import cofh.dyenamics.common.blockentity.DyenamicShulkerBoxBlockEntity;
 import cofh.dyenamics.core.util.DyenamicDyeColor;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class BlockEntityInit
 {
-    public static final DeferredRegister<TileEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, Dyenamics.MOD_ID);
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, Dyenamics.MOD_ID);
 
-    public static final RegistryObject<TileEntityType<DyenamicBedBlockEntity>> BED = BLOCK_ENTITY_TYPES.register("bed",
-            () -> TileEntityType.Builder.create(
+    public static final RegistryObject<BlockEntityType<DyenamicBedBlockEntity>> BED = BLOCK_ENTITY_TYPES.register("bed",
+            () -> BlockEntityType.Builder.of(
                     DyenamicBedBlockEntity::new,
-                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.PEACH.getString()).get("bed").get(),
-                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.AQUAMARINE.getString()).get("bed").get(),
-                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.FLUORESCENT.getString()).get("bed").get(),
-                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.MINT.getString()).get("bed").get(),
-                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.MAROON.getString()).get("bed").get(),
-                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.BUBBLEGUM.getString()).get("bed").get(),
-                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.LAVENDER.getString()).get("bed").get(),
-                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.PERSIMMON.getString()).get("bed").get(),
-                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.CHERENKOV.getString()).get("bed").get()
+                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.PEACH.getSerializedName()).get("bed").get(),
+                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.AQUAMARINE.getSerializedName()).get("bed").get(),
+                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.FLUORESCENT.getSerializedName()).get("bed").get(),
+                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.MINT.getSerializedName()).get("bed").get(),
+                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.MAROON.getSerializedName()).get("bed").get(),
+                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.BUBBLEGUM.getSerializedName()).get("bed").get(),
+                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.LAVENDER.getSerializedName()).get("bed").get(),
+                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.PERSIMMON.getSerializedName()).get("bed").get(),
+                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.CHERENKOV.getSerializedName()).get("bed").get()
             ).build(null));
 
-    public static final RegistryObject<TileEntityType<DyenamicShulkerBoxBlockEntity>> SHULKER_BOX = BLOCK_ENTITY_TYPES.register("shulker_box",
-            () -> TileEntityType.Builder.create(
+    public static final RegistryObject<BlockEntityType<DyenamicShulkerBoxBlockEntity>> SHULKER_BOX = BLOCK_ENTITY_TYPES.register("shulker_box",
+            () -> BlockEntityType.Builder.of(
                     DyenamicShulkerBoxBlockEntity::new,
-                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.PEACH.getString()).get("shulker_box").get(),
-                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.AQUAMARINE.getString()).get("shulker_box").get(),
-                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.FLUORESCENT.getString()).get("shulker_box").get(),
-                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.MINT.getString()).get("shulker_box").get(),
-                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.MAROON.getString()).get("shulker_box").get(),
-                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.BUBBLEGUM.getString()).get("shulker_box").get(),
-                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.LAVENDER.getString()).get("shulker_box").get(),
-                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.PERSIMMON.getString()).get("shulker_box").get(),
-                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.CHERENKOV.getString()).get("shulker_box").get()
+                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.PEACH.getSerializedName()).get("shulker_box").get(),
+                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.AQUAMARINE.getSerializedName()).get("shulker_box").get(),
+                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.FLUORESCENT.getSerializedName()).get("shulker_box").get(),
+                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.MINT.getSerializedName()).get("shulker_box").get(),
+                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.MAROON.getSerializedName()).get("shulker_box").get(),
+                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.BUBBLEGUM.getSerializedName()).get("shulker_box").get(),
+                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.LAVENDER.getSerializedName()).get("shulker_box").get(),
+                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.PERSIMMON.getSerializedName()).get("shulker_box").get(),
+                    BlockInit.DYED_BLOCKS.get(DyenamicDyeColor.CHERENKOV.getSerializedName()).get("shulker_box").get()
             ).build(null));
 }
