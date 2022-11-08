@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class EntityInit
 {
-    public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, Dyenamics.MOD_ID);
+    public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, Dyenamics.MOD_ID);
     public static final RegistryObject<EntityType<DyenamicSheep>> SHEEP = ENTITIES.register("sheep", () -> EntityType.Builder.of(DyenamicSheep::new, MobCategory.CREATURE).build("sheep"));
     public static final Map<String, ResourceLocation> SHEEP_LOOT = new HashMap<>();
 

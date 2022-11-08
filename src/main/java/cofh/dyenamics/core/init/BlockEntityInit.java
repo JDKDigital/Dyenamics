@@ -11,7 +11,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class BlockEntityInit
 {
-    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, Dyenamics.MOD_ID);
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Dyenamics.MOD_ID);
 
     public static final RegistryObject<BlockEntityType<DyenamicBedBlockEntity>> BED = BLOCK_ENTITY_TYPES.register("bed",
             () -> BlockEntityType.Builder.of(
