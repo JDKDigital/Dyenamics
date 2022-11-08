@@ -3,59 +3,55 @@ package cofh.dyenamics.client.render.block;
 import cofh.dyenamics.Dyenamics;
 import cofh.dyenamics.common.blockentity.DyenamicShulkerBoxBlockEntity;
 import cofh.dyenamics.core.util.DyenamicDyeColor;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShulkerBoxBlock;
-import net.minecraft.client.renderer.Atlases;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.model.ShulkerModel;
+import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.model.ShulkerModel;
-import net.minecraft.client.renderer.model.RenderMaterial;
-import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.resources.model.Material;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.ShulkerBoxBlock;
+import net.minecraft.world.level.block.state.BlockState;
 
-import javax.annotation.Nonnull;
-
-public class DyenamicShulkerBoxBlockEntityRenderer extends TileEntityRenderer<DyenamicShulkerBoxBlockEntity>
+public class DyenamicShulkerBoxBlockEntityRenderer implements BlockEntityRenderer<DyenamicShulkerBoxBlockEntity>
 {
-    ShulkerModel<?> model = new ShulkerModel();
+    private final ShulkerModel<?> model;
 
-    public DyenamicShulkerBoxBlockEntityRenderer(TileEntityRendererDispatcher dispatcher) {
-        super(dispatcher);
+    public DyenamicShulkerBoxBlockEntityRenderer(BlockEntityRendererProvider.Context pContext) {
+        this.model = new ShulkerModel<>(pContext.bakeLayer(ModelLayers.SHULKER));
     }
 
-    @Override
-    public void render(@Nonnull DyenamicShulkerBoxBlockEntity blockEntity, float partialTicks, @Nonnull MatrixStack matrixStack, @Nonnull IRenderTypeBuffer buffer, int combinedLightIn, int combinedOverlayIn) {
+    public void render(DyenamicShulkerBoxBlockEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
         Direction direction = Direction.UP;
-        if (blockEntity.hasWorld()) {
-            BlockState blockstate = blockEntity.getWorld().getBlockState(blockEntity.getPos());
+        if (pBlockEntity.hasLevel()) {
+            BlockState blockstate = pBlockEntity.getLevel().getBlockState(pBlockEntity.getBlockPos());
             if (blockstate.getBlock() instanceof ShulkerBoxBlock) {
-                direction = blockstate.get(ShulkerBoxBlock.FACING);
+                direction = blockstate.getValue(ShulkerBoxBlock.FACING);
             }
         }
 
-        DyenamicDyeColor dyeColor = blockEntity.getDyenamicColor();
-        RenderMaterial rendermaterial;
-        if (dyeColor == null) {
-            rendermaterial = Atlases.DEFAULT_SHULKER_TEXTURE;
-        } else {
-            rendermaterial = Dyenamics.SHULKER_MATERIAL_MAP.get(dyeColor.getString());
+        DyenamicDyeColor dyecolor = pBlockEntity.getDyenamicColor();
+        Material material = Sheets.DEFAULT_SHULKER_TEXTURE_LOCATION;
+        if (dyecolor != null && Dyenamics.SHULKER_MATERIAL_MAP.containsKey(dyecolor.getSerializedName())) {
+            material = Dyenamics.SHULKER_MATERIAL_MAP.get(dyecolor.getSerializedName());
         }
 
-        matrixStack.push();
-        matrixStack.translate(0.5D, 0.5D, 0.5D);
-        matrixStack.scale(0.9995F, 0.9995F, 0.9995F);
-        matrixStack.rotate(direction.getRotation());
-        matrixStack.scale(1.0F, -1.0F, -1.0F);
-        matrixStack.translate(0.0D, -1.0D, 0.0D);
-        IVertexBuilder ivertexbuilder = rendermaterial.getBuffer(buffer, RenderType::getEntityCutoutNoCull);
-        this.model.getBase().render(matrixStack, ivertexbuilder, combinedLightIn, combinedOverlayIn);
-        matrixStack.translate(0.0D, -blockEntity.getProgress(partialTicks) * 0.5F, 0.0D);
-        matrixStack.rotate(Vector3f.YP.rotationDegrees(270.0F * blockEntity.getProgress(partialTicks)));
-        this.model.getLid().render(matrixStack, ivertexbuilder, combinedLightIn, combinedOverlayIn);
-        matrixStack.pop();
+        pPoseStack.pushPose();
+        pPoseStack.translate(0.5D, 0.5D, 0.5D);
+        pPoseStack.scale(0.9995F, 0.9995F, 0.9995F);
+        pPoseStack.mulPose(direction.getRotation());
+        pPoseStack.scale(1.0F, -1.0F, -1.0F);
+        pPoseStack.translate(0.0D, -1.0D, 0.0D);
+        ModelPart modelpart = this.model.getLid();
+        modelpart.setPos(0.0F, 24.0F - pBlockEntity.getProgress(pPartialTick) * 0.5F * 16.0F, 0.0F);
+        modelpart.yRot = 270.0F * pBlockEntity.getProgress(pPartialTick) * ((float) Math.PI / 180F);
+        VertexConsumer vertexconsumer = material.buffer(pBufferSource, RenderType::entityCutoutNoCull);
+        this.model.renderToBuffer(pPoseStack, vertexconsumer, pPackedLight, pPackedOverlay, 1.0F, 1.0F, 1.0F, 1.0F);
+        pPoseStack.popPose();
     }
 }

@@ -2,13 +2,14 @@ package cofh.dyenamics.common.blocks;
 
 import cofh.dyenamics.common.blockentity.DyenamicBedBlockEntity;
 import cofh.dyenamics.core.util.DyenamicDyeColor;
-import net.minecraft.block.BedBlock;
-import net.minecraft.item.DyeColor;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.block.BedBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
-public class DyenamicBedBlock extends BedBlock {
-
+public class DyenamicBedBlock extends BedBlock
+{
     private final DyenamicDyeColor color;
 
     public DyenamicBedBlock(DyenamicDyeColor colorIn, Properties properties) {
@@ -17,8 +18,8 @@ public class DyenamicBedBlock extends BedBlock {
     }
 
     @Override
-    public TileEntity createNewTileEntity(IBlockReader worldIn) {
-        return new DyenamicBedBlockEntity(this.color);
+    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+        return new DyenamicBedBlockEntity(this.color, pPos, pState);
     }
 
     public DyenamicDyeColor getDyenamicColor() {

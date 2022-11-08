@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_candle",
+  "textures": {
+    "all": "dyenamics:block/cherenkov_candle_lit",
+    "particle": "dyenamics:block/cherenkov_candle_lit"
+  }
+}

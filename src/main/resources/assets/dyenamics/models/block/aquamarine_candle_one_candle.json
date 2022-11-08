@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_candle",
+  "textures": {
+    "all": "dyenamics:block/aquamarine_candle",
+    "particle": "dyenamics:block/aquamarine_candle"
+  }
+}

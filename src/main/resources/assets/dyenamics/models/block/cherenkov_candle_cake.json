@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_cake_with_candle",
+  "textures": {
+    "candle": "dyenamics:block/cherenkov_candle"
+  }
+}

@@ -1,0 +1,32 @@
+{
+    "replace": false,
+    "values": [
+        "dyenamics:peach_terracotta",
+        "dyenamics:aquamarine_terracotta",
+        "dyenamics:fluorescent_terracotta",
+        "dyenamics:mint_terracotta",
+        "dyenamics:maroon_terracotta",
+        "dyenamics:bubblegum_terracotta",
+        "dyenamics:lavender_terracotta",
+        "dyenamics:persimmon_terracotta",
+        "dyenamics:cherenkov_terracotta",
+        "dyenamics:peach_glazed_terracotta",
+        "dyenamics:aquamarine_glazed_terracotta",
+        "dyenamics:fluorescent_glazed_terracotta",
+        "dyenamics:mint_glazed_terracotta",
+        "dyenamics:maroon_glazed_terracotta",
+        "dyenamics:bubblegum_glazed_terracotta",
+        "dyenamics:lavender_glazed_terracotta",
+        "dyenamics:persimmon_glazed_terracotta",
+        "dyenamics:cherenkov_glazed_terracotta",
+        "dyenamics:peach_concrete",
+        "dyenamics:aquamarine_concrete",
+        "dyenamics:fluorescent_concrete",
+        "dyenamics:mint_concrete",
+        "dyenamics:maroon_concrete",
+        "dyenamics:bubblegum_concrete",
+        "dyenamics:lavender_concrete",
+        "dyenamics:persimmon_concrete",
+        "dyenamics:cherenkov_concrete"
+    ]
+}

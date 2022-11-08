@@ -4,33 +4,33 @@ import cofh.dyenamics.common.blocks.DyenamicShulkerBoxBlock;
 import cofh.dyenamics.common.items.DyenamicDyeItem;
 import cofh.dyenamics.core.init.RecipeSerializerInit;
 import cofh.dyenamics.core.util.DyenamicDyeColor;
-import net.minecraft.block.Block;
-import net.minecraft.block.ShulkerBoxBlock;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.SpecialRecipe;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingRecipe;
+import net.minecraft.world.item.crafting.CustomRecipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.ShulkerBoxBlock;
 
-public class DyenamicShulkerBoxColoringRecipe extends SpecialRecipe {
-
-    public DyenamicShulkerBoxColoringRecipe(ResourceLocation idIn) {
-        super(idIn);
+public class DyenamicShulkerBoxColoringRecipe extends CustomRecipe
+{
+    public DyenamicShulkerBoxColoringRecipe(ResourceLocation id) {
+        super(id);
     }
 
-    public boolean matches(CraftingInventory inv, World worldIn) {
-
+    public boolean matches(CraftingContainer inv, Level pLevel) {
         int boxes = 0;
         int dyes = 0;
 
-        int slots = inv.getSizeInventory();
+        int slots = inv.getContainerSize();
         for(int i = 0; i < slots; ++i) {
-            ItemStack slotStack = inv.getStackInSlot(i);
+            ItemStack slotStack = inv.getItem(i);
             if (!slotStack.isEmpty()) {
                 Item item = slotStack.getItem();
-                if (Block.getBlockFromItem(item) instanceof ShulkerBoxBlock) {
+                if (item instanceof BlockItem blockItem && blockItem.getBlock() instanceof ShulkerBoxBlock) {
                     if (boxes >= 1) {
                         return false;
                     }
@@ -49,18 +49,18 @@ public class DyenamicShulkerBoxColoringRecipe extends SpecialRecipe {
         return dyes == 1 && boxes == 1;
     }
 
-    public ItemStack getCraftingResult(CraftingInventory inv) {
-
+    public ItemStack assemble(CraftingContainer inv) {
         ItemStack boxStack = ItemStack.EMPTY;
         DyenamicDyeColor color = DyenamicDyeColor.PEACH;
-        int slots = inv.getSizeInventory();
+        int slots = inv.getContainerSize();
         for(int i = 0; i < slots; ++i) {
-            ItemStack slot = inv.getStackInSlot(i);
-            if (!slot.isEmpty()) {
-                if (Block.getBlockFromItem(slot.getItem()) instanceof ShulkerBoxBlock) {
-                    boxStack = slot;
+            ItemStack slotStack = inv.getItem(i);
+            if (!slotStack.isEmpty()) {
+                Item item = slotStack.getItem();
+                if (item instanceof BlockItem blockItem && blockItem.getBlock() instanceof ShulkerBoxBlock) {
+                    boxStack = slotStack;
                 } else {
-                    color = DyenamicDyeColor.getColor(slot);
+                    color = DyenamicDyeColor.getColor(slotStack);
                 }
             }
         }
@@ -73,11 +73,11 @@ public class DyenamicShulkerBoxColoringRecipe extends SpecialRecipe {
         return output;
     }
 
-    public boolean canFit(int width, int height) {
+    public boolean canCraftInDimensions(int width, int height) {
         return width * height >= 2;
     }
 
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return RecipeSerializerInit.SHULKER.get();
     }
 }

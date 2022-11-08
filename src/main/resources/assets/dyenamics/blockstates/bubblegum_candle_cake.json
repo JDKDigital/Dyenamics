@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "dyenamics:block/bubblegum_candle_cake"
+    },
+    "lit=true": {
+      "model": "dyenamics:block/bubblegum_candle_cake_lit"
+    }
+  }
+}
