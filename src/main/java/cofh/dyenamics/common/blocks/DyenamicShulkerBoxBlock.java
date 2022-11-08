@@ -1,6 +1,7 @@
 package cofh.dyenamics.common.blocks;
 
 import cofh.dyenamics.common.blockentity.DyenamicShulkerBoxBlockEntity;
+import cofh.dyenamics.core.init.BlockEntityInit;
 import cofh.dyenamics.core.init.BlockInit;
 import cofh.dyenamics.core.util.DyenamicDyeColor;
 import net.minecraft.core.BlockPos;
@@ -11,8 +12,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+
+import javax.annotation.Nullable;
 
 public class DyenamicShulkerBoxBlock extends ShulkerBoxBlock
 {
@@ -34,6 +39,11 @@ public class DyenamicShulkerBoxBlock extends ShulkerBoxBlock
 
     public static ItemStack getDyenamicColoredItemStack(DyenamicDyeColor colorIn) {
         return new ItemStack(BlockInit.DYED_BLOCKS.get(colorIn.getSerializedName()).get("shulker_box").get());
+    }
+
+    @Nullable
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+        return createTickerHelper(pBlockEntityType, BlockEntityInit.SHULKER_BOX.get(), ShulkerBoxBlockEntity::tick);
     }
 
     @Override

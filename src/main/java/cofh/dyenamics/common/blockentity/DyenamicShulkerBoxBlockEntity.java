@@ -4,6 +4,7 @@ import cofh.dyenamics.common.blocks.DyenamicShulkerBoxBlock;
 import cofh.dyenamics.core.init.BlockEntityInit;
 import cofh.dyenamics.core.util.DyenamicDyeColor;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
@@ -30,10 +31,10 @@ public class DyenamicShulkerBoxBlockEntity extends ShulkerBoxBlockEntity
         return BlockEntityInit.SHULKER_BOX.get();
     }
 
-//    @Override
-//    public SUpdateTileEntityPacket getUpdatePacket() {
-//        return new SUpdateTileEntityPacket(this.pos, 11, this.getUpdateTag());
-//    }
+    @Override
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
 
     public DyenamicDyeColor getDyenamicColor() {
         if (this.color == null) {

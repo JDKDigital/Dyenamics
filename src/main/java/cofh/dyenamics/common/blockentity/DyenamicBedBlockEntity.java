@@ -4,6 +4,7 @@ import cofh.dyenamics.common.blocks.DyenamicBedBlock;
 import cofh.dyenamics.core.init.BlockEntityInit;
 import cofh.dyenamics.core.util.DyenamicDyeColor;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -20,10 +21,10 @@ public class DyenamicBedBlockEntity extends BlockEntity
         this.setColor(colorIn);
     }
 
-//    @Override
-//    public SUpdateTileEntityPacket getUpdatePacket() {
-//        return new SUpdateTileEntityPacket(this.pos, 11, this.getUpdateTag());
-//    }
+    @Override
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
 
     public DyenamicDyeColor getColor() {
         if (this.color == null) {
