@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "dyed_candle",
+  "ingredients": [
+    {
+      "item": "minecraft:candle"
+    },
+    {
+      "tag": "forge:dyes/lavender"
+    }
+  ],
+  "result": {
+    "item": "dyenamics:lavender_candle"
+  }
+}
