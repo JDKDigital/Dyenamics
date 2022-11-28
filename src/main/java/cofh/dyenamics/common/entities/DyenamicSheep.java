@@ -31,6 +31,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.network.NetworkHooks;
 
 import javax.annotation.Nullable;
@@ -259,10 +260,8 @@ public class DyenamicSheep extends Sheep
             return false;
         } else if (otherAnimal instanceof Sheep) {
             return this.isInLove() && otherAnimal.isInLove();
-        } else if (otherAnimal.getClass() != this.getClass()) {
-            return false;
         } else {
-            return this.isInLove() && otherAnimal.isInLove();
+            return false;
         }
     }
 
@@ -306,7 +305,7 @@ public class DyenamicSheep extends Sheep
 
     @Override
     public ItemStack getPickedResult(HitResult target) {
-        return new ItemStack(SpawnEggItem.byId(EntityType.SHEEP));
+        return new ItemStack(ForgeSpawnEggItem.fromEntityType(EntityType.SHEEP));
     }
 }
 

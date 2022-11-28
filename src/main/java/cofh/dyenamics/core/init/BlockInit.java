@@ -56,15 +56,7 @@ public class BlockInit
         var candle = registerBlockAndItem(colorName, "candle", blocks, CreativeModeTab.TAB_BUILDING_BLOCKS, BlockItem::new, () -> new CandleBlock(BlockBehaviour.Properties.of(Material.DECORATION, mapColor).noOcclusion().strength(0.1F).sound(SoundType.CANDLE).lightLevel(state -> light)));
         registerBlockAndItem(colorName, "candle_cake", blocks, CreativeModeTab.TAB_BUILDING_BLOCKS, null, () -> new CandleCakeBlock(candle.get(), BlockBehaviour.Properties.copy(Blocks.CANDLE_CAKE).lightLevel(state -> light)));
         registerBedAndItem(colorName, "bed", blocks, CreativeModeTab.TAB_DECORATIONS, DyenamicBedBlockItem::new, () -> new DyenamicBedBlock(color, BlockBehaviour.Properties.of(Material.WOOL, (state) -> state.getValue(BedBlock.PART) == BedPart.FOOT ? mapColor : MaterialColor.WOOL).sound(SoundType.WOOD).strength(0.2F).noOcclusion().lightLevel(state -> light)));
-        BlockBehaviour.StatePredicate shulkerBoxBehavior = (blockState, level, blockPos) -> {
-            BlockEntity blockentity = level.getBlockEntity(blockPos);
-            if (!(blockentity instanceof ShulkerBoxBlockEntity)) {
-                return true;
-            } else {
-                ShulkerBoxBlockEntity shulkerboxblockentity = (ShulkerBoxBlockEntity)blockentity;
-                return shulkerboxblockentity.isClosed();
-            }
-        };
+        BlockBehaviour.StatePredicate shulkerBoxBehavior = (blockState, level, blockPos) -> !(level.getBlockEntity(blockPos) instanceof ShulkerBoxBlockEntity box) || box.isClosed();
         registerShulkerBoxAndItem(colorName, "shulker_box", blocks, CreativeModeTab.TAB_DECORATIONS, DyenamicShulkerBlockItem::new, () -> new DyenamicShulkerBoxBlock(color, BlockBehaviour.Properties.of(Material.SHULKER_SHELL, mapColor).strength(2.0F).dynamicShape().noOcclusion().isSuffocating(shulkerBoxBehavior).isViewBlocking(shulkerBoxBehavior)));
     }
 
