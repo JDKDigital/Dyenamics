@@ -1,0 +1,9 @@
+{
+    "sources": [
+        {
+            "type": "directory",
+            "source": "dyenamics:entity/shulker",
+            "prefix": "entity/shulker/"
+        }
+    ]
+}
