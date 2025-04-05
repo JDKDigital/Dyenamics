@@ -5,6 +5,7 @@ import cy.jdkdigital.dyenamics.core.init.BlockInit;
 import cy.jdkdigital.dyenamics.core.init.EntityInit;
 import cy.jdkdigital.dyenamics.core.util.DyenamicDyeColor;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
@@ -22,6 +23,7 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
+import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
 import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import org.jetbrains.annotations.NotNull;
@@ -81,7 +83,7 @@ public class LootDataProvider implements DataProvider
         @Override
         protected void generate() {
             for (DyenamicDyeColor color: DyenamicDyeColor.dyenamicValues()) {
-                dropSelf(BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("banner").get());
+                dropBanner(BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("banner").get());
                 add(BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("bed").get(), (block) -> this.createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
                 add(BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("candle").get(), this::createCandleDrops);
                 add(BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("candle_cake").get(), createCandleCakeDrops(BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("candle_cake").get()));
@@ -94,7 +96,7 @@ public class LootDataProvider implements DataProvider
                 dropWhenSilkTouch(BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("stained_glass").get());
                 dropWhenSilkTouch(BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("stained_glass_pane").get());
                 dropSelf(BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("terracotta").get());
-                dropOther(BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("wall_banner").get(), BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("banner").get());
+                dropOtherBanner(BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("wall_banner").get(), BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("banner").get());
                 dropSelf(BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("wool").get());
             }
         }
@@ -121,6 +123,16 @@ public class LootDataProvider implements DataProvider
 
         public void dropOther(@NotNull Block block, @NotNull Block otherBlock) {
             Function<Block, LootTable.Builder> func = functionTable.getOrDefault(block, BlockProvider::genOptionalBlockDrop);
+            this.add(block, func.apply(otherBlock));
+        }
+
+        public void dropBanner(@NotNull Block block) {
+            Function<Block, LootTable.Builder> func = functionTable.getOrDefault(block, super::createBannerDrop);
+            this.add(block, func.apply(block));
+        }
+
+        public void dropOtherBanner(@NotNull Block block, @NotNull Block otherBlock) {
+            Function<Block, LootTable.Builder> func = functionTable.getOrDefault(block, super::createBannerDrop);
             this.add(block, func.apply(otherBlock));
         }
 

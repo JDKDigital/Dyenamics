@@ -137,6 +137,7 @@ dependencies {
 //    implementation fg.deobf("curse.maven:thermal-expansion-69163:4970700")
     implementation "curse.maven:cucumber-272335:5711793"
     implementation "curse.maven:mystical-agriculture-246640:5714854"
+    implementation "curse.maven:fusion-connected-textures-854949:6108307"
 }
 
 tasks.withType(ProcessResources).configureEach {
