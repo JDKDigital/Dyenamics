@@ -10,12 +10,15 @@
       "modid": "mysticalagriculture"
     },
     {
-      "type": "mysticalagriculture:crop_enabled",
-      "crop": "mysticalagriculture:dye"
+      "type": "dyenamics:lazy",
+      "value": {
+        "type": "mysticalagriculture:crop_enabled",
+        "crop": "mysticalagriculture:dye"
+      }
     }
   ],
   "pattern": [
-    "EE ",
+    "E E",
     "   ",
     " E "
   ],

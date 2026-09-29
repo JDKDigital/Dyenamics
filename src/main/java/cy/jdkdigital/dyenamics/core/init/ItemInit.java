@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class ItemInit
 {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM, Dyenamics.MOD_ID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM, Dyenamics.MODID);
     public static final Map<String, DeferredHolder<Item, Item>> DYE_ITEMS = new HashMap<>();
 
     public synchronized static void register() {

@@ -32,11 +32,12 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.phys.HitResult;
-import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 public class DyenamicSheep extends Sheep
 {
@@ -104,9 +105,9 @@ public class DyenamicSheep extends Sheep
         Level level = oldSheep.level();
         if (!level.isClientSide) {
             sheep.setAge(oldSheep.getAge());
+            sheep.copyPosition(oldSheep);
             level.addFreshEntity(sheep);
             oldSheep.remove(RemovalReason.DISCARDED);
-            sheep.copyPosition(oldSheep);
         }
     }
 

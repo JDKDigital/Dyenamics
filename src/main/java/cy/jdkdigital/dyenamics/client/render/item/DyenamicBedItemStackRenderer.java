@@ -1,8 +1,8 @@
 package cy.jdkdigital.dyenamics.client.render.item;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import cy.jdkdigital.dyenamics.common.blockentity.DyenamicBedBlockEntity;
 import cy.jdkdigital.dyenamics.common.block.DyenamicBedBlock;
+import cy.jdkdigital.dyenamics.common.blockentity.DyenamicBedBlockEntity;
 import cy.jdkdigital.dyenamics.core.init.BlockInit;
 import cy.jdkdigital.dyenamics.core.util.DyenamicDyeColor;
 import net.minecraft.client.Minecraft;

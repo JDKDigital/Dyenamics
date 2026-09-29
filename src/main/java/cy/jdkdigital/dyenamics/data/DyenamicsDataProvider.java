@@ -14,7 +14,7 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-@EventBusSubscriber(modid = Dyenamics.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Dyenamics.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class DyenamicsDataProvider
 {
     @SubscribeEvent

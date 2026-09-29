@@ -1,3 +1,35 @@
+1.21.1-3.5.0
+
+- Villagers can now claim and sleep in Dyenamics beds
+- Added c:concretes, c:glazed_terracottas, c:concrete_powders, minecraft:terracotta and minecraft:concrete_powder tags
+- Dyenamics items are now listed after their vanilla counterparts in the creative tabs
+- Fixed MA lavender dye recipe being taken over by brown dye
+
+
+1.21.1-3.4.2
+
+- Changed compat recipe conditions for less noise in logs
+
+
+1.21.1-3.4.1
+
+- Fixed some MA dye recipe conflicts
+
+
+1.21.1-3.4.0
+
+- Cat and Wolf collars can now be dyed
+- Dyenamic Llama swag now shows correctly
+- Fixed crash when putting banners in a crafting grid when Supplementaries is installed
+
+
+1.21.1-3.3.1
+
+- Fixed vanilla dyes not applying color to firework
+- Fixed MA maroon dye recipe conflicting with black dye
+- Removed light value from spring green blocks
+
+
 1.21.1-3.3.0
 
 - Added connected textures for glass blocks and panes with Fusion (jamiepayne)

@@ -29,3 +29,5 @@ forge*changelog.txt
 
 datagen/resources
 src/generated/resources/.cache
+
+node_modules

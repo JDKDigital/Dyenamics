@@ -1,36 +1,42 @@
 package cy.jdkdigital.dyenamics.core.util;
 
 import cy.jdkdigital.dyenamics.Dyenamics;
-import cy.jdkdigital.dyenamics.common.block.DyenamicCarpetBlock;
-import net.minecraft.server.TickTask;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.animal.horse.Llama;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.ItemStack;
+import cy.jdkdigital.dyenamics.common.item.DyenamicDyeItem;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.animal.Cat;
+import net.minecraft.world.entity.animal.Wolf;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
-@EventBusSubscriber(modid = Dyenamics.MOD_ID)
+@EventBusSubscriber(modid = Dyenamics.MODID)
 public class EventHandler
 {
     @SubscribeEvent
-    public static void onEntitySpawn(EntityJoinLevelEvent event) {
-        // Mojang changed things, it's annoying
-//        if (event.getLevel() instanceof ServerLevel && event.getEntity() instanceof Llama llama) {
-//            Dyenamics.LOGGER.info("spawn llama: " + event.getEntity() + " " + llama.inventory.getItem(0));
-//            llama.getBodyArmorAccess().addListener(container -> {
-//                var swagHandler = llama.getData(Dyenamics.SWAG_HANDLER);
-//                ItemStack swagItem = container.getItem(0);
-//                Dyenamics.LOGGER.info("swagItem: " + swagItem);
-//                if (swagItem.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof DyenamicCarpetBlock carpetBlock) {
-//                    Dyenamics.LOGGER.info("setSwag: " + carpetBlock.getDyenamicColor().getId() + " " + llama);
-//                    swagHandler.setSwag(carpetBlock.getDyenamicColor().getId(), llama);
-//                } else {
-//                    swagHandler.removeSwag(llama);
-//                }
-//            });
-//        }
+    public static void onPlayerInteract(PlayerInteractEvent.EntityInteract event) {
+        if (event.getItemStack().getItem() instanceof DyenamicDyeItem dyeItem) {
+            if (event.getTarget() instanceof Wolf wolf && wolf.isTame() && wolf.isOwnedBy(event.getEntity())) {
+                var colorId = wolf.getEntityData().get(Wolf.DATA_COLLAR_COLOR);
+                if (!event.getLevel().isClientSide && colorId != dyeItem.getDyeColor().getId()) {
+                    wolf.getEntityData().set(Wolf.DATA_COLLAR_COLOR, dyeItem.getDyeColor().getId());
+                    if (!event.getEntity().hasInfiniteMaterials()) {
+                        event.getItemStack().shrink(1);
+                    }
+                }
+                event.setCanceled(true);
+                event.setCancellationResult(InteractionResult.sidedSuccess(event.getLevel().isClientSide));
+            }
+            if (event.getTarget() instanceof Cat cat && cat.isTame() && cat.isOwnedBy(event.getEntity())) {
+                var colorId = cat.getEntityData().get(Cat.DATA_COLLAR_COLOR);
+                if (!event.getLevel().isClientSide && colorId != dyeItem.getDyeColor().getId()) {
+                    cat.getEntityData().set(Cat.DATA_COLLAR_COLOR, dyeItem.getDyeColor().getId());
+                    if (!event.getEntity().hasInfiniteMaterials()) {
+                        event.getItemStack().shrink(1);
+                    }
+                }
+                event.setCanceled(true);
+                event.setCancellationResult(InteractionResult.sidedSuccess(event.getLevel().isClientSide));
+            }
+        }
     }
 }

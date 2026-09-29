@@ -165,7 +165,7 @@ public class BlockstateProvider implements DataProvider
         }
 
         private void createGlassBlock(Block pBlock) {
-            var template = new ModelTemplate(Optional.of(ResourceLocation.fromNamespaceAndPath(Dyenamics.MOD_ID, "block/stained_glass")), Optional.empty(), TextureSlot.ALL);
+            var template = new ModelTemplate(Optional.of(ResourceLocation.fromNamespaceAndPath(Dyenamics.MODID, "block/stained_glass")), Optional.empty(), TextureSlot.ALL);
             this.blockStateOutput.accept(createSimpleBlock(pBlock, template.create(pBlock, TextureMapping.defaultTexture(pBlock).put(TextureSlot.ALL, ModelLocationUtils.getModelLocation(pBlock)), this.modelOutput)));
         }
 

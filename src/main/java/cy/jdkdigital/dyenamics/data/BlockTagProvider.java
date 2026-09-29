@@ -16,7 +16,7 @@ import java.util.concurrent.CompletableFuture;
 public class BlockTagProvider extends BlockTagsProvider
 {
     public BlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, ExistingFileHelper helper) {
-        super(output, provider, Dyenamics.MOD_ID, helper);
+        super(output, provider, Dyenamics.MODID, helper);
     }
 
     @Override
@@ -28,6 +28,11 @@ public class BlockTagProvider extends BlockTagsProvider
                     BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("concrete").get()
             );
             tag(BlockTags.MINEABLE_WITH_SHOVEL).add(BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("concrete_powder").get());
+
+            tag(BlockTags.TERRACOTTA).add(BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("terracotta").get());
+            tag(BlockTags.CONCRETE_POWDER).add(BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("concrete_powder").get());
+            tag(Tags.Blocks.CONCRETES).add(BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("concrete").get());
+            tag(Tags.Blocks.GLAZED_TERRACOTTAS).add(BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("glazed_terracotta").get());
 
             tag(BlockTags.BANNERS).add(BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("banner").get());
             tag(BlockTags.BEDS).add(BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("bed").get());

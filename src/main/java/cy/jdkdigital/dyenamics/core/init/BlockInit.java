@@ -6,11 +6,13 @@ import cy.jdkdigital.dyenamics.common.item.DyenamicBannerItem;
 import cy.jdkdigital.dyenamics.common.item.DyenamicBedBlockItem;
 import cy.jdkdigital.dyenamics.common.item.DyenamicShulkerBlockItem;
 import cy.jdkdigital.dyenamics.core.util.DyenamicDyeColor;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BannerPatternLayers;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -24,7 +26,7 @@ import java.util.function.Supplier;
 
 public class BlockInit
 {
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(BuiltInRegistries.BLOCK, Dyenamics.MOD_ID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(BuiltInRegistries.BLOCK, Dyenamics.MODID);
     public static final Map<String, Map<String, DeferredHolder<Block, Block>>> DYED_BLOCKS = new HashMap<>();
 
     public static void register() {
@@ -86,7 +88,7 @@ public class BlockInit
     public synchronized static DeferredHolder<Block, Block> registerBannerBlockAndItem(String color, String nameSuffix, Map<String, DeferredHolder<Block, Block>> blockMap, Supplier<Block> banner, DeferredHolder<Block, Block> wallBanner) {
         String name = color + "_" + nameSuffix;
         DeferredHolder<Block, Block> block = BLOCKS.register(name, banner);
-        ItemInit.ITEMS.register(name, () -> new DyenamicBannerItem(block.get(), wallBanner.get(), (new Item.Properties()).stacksTo(16)));
+        ItemInit.ITEMS.register(name, () -> new DyenamicBannerItem(block.get(), wallBanner.get(), (new Item.Properties()).stacksTo(16).component(DataComponents.BANNER_PATTERNS, BannerPatternLayers.EMPTY)));
         blockMap.put(nameSuffix, block);
         return block;
     }

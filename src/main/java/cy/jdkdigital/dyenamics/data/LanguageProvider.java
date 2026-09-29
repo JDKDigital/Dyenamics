@@ -9,7 +9,7 @@ import net.minecraft.data.PackOutput;
 public class LanguageProvider extends net.neoforged.neoforge.common.data.LanguageProvider
 {
     public LanguageProvider(PackOutput output) {
-        super(output, Dyenamics.MOD_ID, "en_us");
+        super(output, Dyenamics.MODID, "en_us");
     }
 
     @Override

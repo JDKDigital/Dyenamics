@@ -10,8 +10,11 @@
       "modid": "mysticalagriculture"
     },
     {
-      "type": "mysticalagriculture:crop_enabled",
-      "crop": "mysticalagriculture:water"
+      "type": "dyenamics:lazy",
+      "value": {
+        "type": "mysticalagriculture:crop_enabled",
+        "crop": "mysticalagriculture:water"
+      }
     }
   ],
   "pattern": [

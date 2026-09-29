@@ -8,7 +8,10 @@ import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.Util;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.DyeItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.FireworkExplosion;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
@@ -102,9 +105,9 @@ public class DyenamicFireworkStarRecipe extends CustomRecipe
                     flag1 = true;
                 } else if (itemstack.getItem() instanceof DyenamicDyeItem dyeItem) {
                     intlist.add(dyeItem.getDyeColor().getFireworkColor());
+                } else if (itemstack.getItem() instanceof DyeItem dyeItem) {
+                    intlist.add(dyeItem.getDyeColor().getFireworkColor());
                 }
-            } else if (itemstack.getItem() instanceof DyeItem dyeItem) {
-                intlist.add(dyeItem.getDyeColor().getFireworkColor());
             }
         }
 

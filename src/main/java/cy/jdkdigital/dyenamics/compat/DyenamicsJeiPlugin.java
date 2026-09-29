@@ -21,7 +21,7 @@ import java.util.List;
 @JeiPlugin
 public class DyenamicsJeiPlugin implements IModPlugin
 {
-    private static final ResourceLocation pluginId = ResourceLocation.fromNamespaceAndPath(Dyenamics.MOD_ID, Dyenamics.MOD_ID);
+    private static final ResourceLocation pluginId = ResourceLocation.fromNamespaceAndPath(Dyenamics.MODID, Dyenamics.MODID);
 
     @Nonnull
     @Override
@@ -31,10 +31,10 @@ public class DyenamicsJeiPlugin implements IModPlugin
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-        Ingredient shulkers = Ingredient.of(ItemTags.create(ResourceLocation.fromNamespaceAndPath(Dyenamics.MOD_ID, "shulker_boxes")));
+        Ingredient shulkers = Ingredient.of(ItemTags.create(ResourceLocation.fromNamespaceAndPath(Dyenamics.MODID, "shulker_boxes")));
         List<RecipeHolder<CraftingRecipe>> shulkerRecipes = Arrays.stream(DyenamicDyeColor.dyenamicValues()).map(color -> {
             var shulkerBox = BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("shulker_box");
-            return new RecipeHolder<CraftingRecipe>(ResourceLocation.fromNamespaceAndPath(Dyenamics.MOD_ID, color.getSerializedName() + "_shulker"), new ShapelessRecipe("shulker", CraftingBookCategory.MISC, new ItemStack(shulkerBox.get()), NonNullList.of(Ingredient.EMPTY, shulkers, Ingredient.of(ItemInit.DYE_ITEMS.get(color + "_dye").get()))));
+            return new RecipeHolder<CraftingRecipe>(ResourceLocation.fromNamespaceAndPath(Dyenamics.MODID, color.getSerializedName() + "_shulker"), new ShapelessRecipe("shulker", CraftingBookCategory.MISC, new ItemStack(shulkerBox.get()), NonNullList.of(Ingredient.EMPTY, shulkers, Ingredient.of(ItemInit.DYE_ITEMS.get(color + "_dye").get()))));
         }).toList();
         registration.addRecipes(RecipeTypes.CRAFTING, shulkerRecipes);
     }

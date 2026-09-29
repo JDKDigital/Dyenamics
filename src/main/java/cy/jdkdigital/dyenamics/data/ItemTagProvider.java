@@ -20,12 +20,12 @@ import java.util.concurrent.CompletableFuture;
 public class ItemTagProvider extends ItemTagsProvider
 {
     public ItemTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> future, CompletableFuture<TagLookup<Block>> provider, ExistingFileHelper helper) {
-        super(output, future, provider, Dyenamics.MOD_ID, helper);
+        super(output, future, provider, Dyenamics.MODID, helper);
     }
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        var shulkerBoxes = tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath(Dyenamics.MOD_ID, "shulker_boxes")));
+        var shulkerBoxes = tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath(Dyenamics.MODID, "shulker_boxes")));
         shulkerBoxes.add(Items.SHULKER_BOX,
                 Items.WHITE_SHULKER_BOX,
                 Items.ORANGE_SHULKER_BOX,
@@ -50,6 +50,10 @@ public class ItemTagProvider extends ItemTagsProvider
             copy(BlockTags.CANDLES, ItemTags.CANDLES);
             copy(BlockTags.WOOL, ItemTags.WOOL);
             copy(BlockTags.WOOL_CARPETS, ItemTags.WOOL_CARPETS);
+            copy(BlockTags.TERRACOTTA, ItemTags.TERRACOTTA);
+            copy(BlockTags.CONCRETE_POWDER, Tags.Items.CONCRETE_POWDERS);
+            copy(Tags.Blocks.CONCRETES, Tags.Items.CONCRETES);
+            copy(Tags.Blocks.GLAZED_TERRACOTTAS, Tags.Items.GLAZED_TERRACOTTAS);
 
             shulkerBoxes.add(BlockInit.DYED_BLOCKS.get(color.getSerializedName()).get("shulker_box").get().asItem());
 

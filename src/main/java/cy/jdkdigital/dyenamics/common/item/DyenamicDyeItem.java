@@ -1,12 +1,14 @@
 package cy.jdkdigital.dyenamics.common.item;
 
 import com.google.common.collect.Maps;
+import cy.jdkdigital.dyenamics.Dyenamics;
 import cy.jdkdigital.dyenamics.common.entity.DyenamicSheep;
 import cy.jdkdigital.dyenamics.core.util.DyenamicDyeColor;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Sheep;
+import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;

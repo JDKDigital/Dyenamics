@@ -16,6 +16,9 @@ license="${mod_license}"
 [[accessTransformers]]
     file="META-INF/accesstransformer.cfg"
 
+[[mixins]]
+    config="${mod_id}.mixin.json"
+
 # A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]]
     modId="${mod_id}"

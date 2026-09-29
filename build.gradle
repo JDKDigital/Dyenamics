@@ -135,8 +135,9 @@ dependencies {
 //    implementation fg.deobf("curse.maven:cofh-core-69162:4970669")
 //    implementation fg.deobf("curse.maven:thermal-foundation-222880:4979840")
 //    implementation fg.deobf("curse.maven:thermal-expansion-69163:4970700")
-    implementation "curse.maven:cucumber-272335:5711793"
-    implementation "curse.maven:mystical-agriculture-246640:5714854"
+    implementation "curse.maven:polymorph-388800:6451024"
+    implementation "curse.maven:cucumber-272335:6864715"
+    implementation "curse.maven:mystical-agriculture-246640:6864755"
     implementation "curse.maven:fusion-connected-textures-854949:6108307"
 }
 
